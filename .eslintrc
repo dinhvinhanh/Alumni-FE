@@ -1,0 +1,20 @@
+{
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "react/jsx-uses-react": 2
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}
