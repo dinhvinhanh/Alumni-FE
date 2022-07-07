@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from 'store';
+import RootLayout from 'app/layouts/rootLayout';
 
 const queryClient = new QueryClient();
 function App() {
@@ -16,10 +17,9 @@ function App() {
         >
           <meta name="description" content="Alumni - UET" data-rh="true"/>
         </Helmet>
-        {/* @ts-ignore */}
-        {/* <ConnectedRouter history={history}> */}
-        {/*   <div>hello</div> */}
-        {/* </ConnectedRouter> */}
+        <ConnectedRouter history={history}>
+          <RootLayout />
+        </ConnectedRouter>
         {/* <GlobalStyle /> */}
       </BrowserRouter>
     </QueryClientProvider>
