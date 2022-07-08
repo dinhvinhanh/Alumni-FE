@@ -18,7 +18,7 @@ root.render(
       <HelmetProvider>
           <ThemeProvider theme={theme}>
             <StyledEngineProvider injectFirst>
-              <App />
+              <App/>
             </StyledEngineProvider>
           </ThemeProvider>
       </HelmetProvider>
