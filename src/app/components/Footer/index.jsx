@@ -4,7 +4,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import { Box } from '@mui/material';
 import useStyles from './styles';
-import { Mail } from '@mui/icons-material';
 
 export default function Footer() {
   const classes = useStyles();
