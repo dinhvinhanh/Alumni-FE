@@ -39,7 +39,7 @@ export function HomePage() {
           ))}
         </Slide>
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
-          <Grid container width={1300} spacing={12} paddingY={5}>
+          <Grid container width={1200} spacing={12} paddingY={5}>
             <Grid item xl={7}>
               <News />
             </Grid>

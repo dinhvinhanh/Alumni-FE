@@ -3,10 +3,8 @@ import Grid from '@mui/material/Grid';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
 import { Box } from '@mui/material';
-import useStyles from './styles';
 
 export default function Footer() {
-  const classes = useStyles();
   return (
     <footer className={' text-white mt-10'}>
       <Box style={{ display: 'flex', justifyContent: 'center' }} className={'bg-red-900 rounded-tl-full rounded-tr-full'}>
@@ -37,7 +35,7 @@ export default function Footer() {
       <div className={'bg-red-900'}>
         <div
           className={'flex justify-between mx-auto border-t-2 p-4 border-white'}
-          style={{ width: '1300px' }}
+          style={{ width: '1200px' }}
         >
           <p>	&copy; 2022 - Trường Đại học Quốc Gia, All Rights Reserved |
             <span className={'animate-pulse'}> Powered by Đinh Vĩnh Anh</span>
