@@ -1,5 +1,4 @@
 import * as React from 'react';
-import useStyles from './styles';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 

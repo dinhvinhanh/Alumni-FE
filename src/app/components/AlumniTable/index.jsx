@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useMemo } from 'react';
+import Avatar from '@mui/material/Avatar';
 
 const columns = [
   { id: 'avatar', label: 'Avatar', minWidth: 50, align: 'center' },
@@ -71,7 +72,7 @@ export default function AlumniTable({ onClick }) {
     setPage(0);
   };
 
-  const tableHeight = useMemo(() => window.innerHeight - 120, []) || 500;
+  const tableHeight = useMemo(() => window.innerHeight - 220, []) || 500;
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -98,6 +99,13 @@ export default function AlumniTable({ onClick }) {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={onClick}>
                     {columns.map((column) => {
                       const value = row[column.id];
+                      if (column.id === 'avatar') {
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            <Avatar src={''} className={'mx-auto'}/>
+                          </TableCell>
+                        )
+                      }
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof value === 'number'
