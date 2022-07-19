@@ -7,10 +7,10 @@ import { Box } from '@mui/material';
 export default function Footer() {
   return (
     <footer className={' text-white mt-10'}>
-      <Box style={{ display: 'flex', justifyContent: 'center' }} className={'bg-red-900 rounded-tl-full rounded-tr-full'}>
+      <Box style={{ display: 'flex', justifyContent: 'center' }} className={'bg-primary'}>
         <Grid container width={1200} spacing={12} paddingY={5}>
           <Grid item xl={2}>
-            <img src={'https://i3.connections.vn/alumni.hanu.vn/img/logo.png?resize=80,80&quality=100&strip=all'} alt=''/>
+            <img src={'https://www.fit.uet.vnu.edu.vn/wp-content/themes/fit2019/images/fit-logo.svg'} alt=''/>
           </Grid>
           <Grid item xl={6}>
             <h1 className="uppercase mb-3">Mạng lưới cựu sinh viên</h1>
@@ -32,7 +32,7 @@ export default function Footer() {
           </Grid>
         </Grid>
       </Box>
-      <div className={'bg-red-900'}>
+      <div className={'bg-primary'}>
         <div
           className={'flex justify-between mx-auto border-t-2 p-4 border-white'}
           style={{ width: '1200px' }}

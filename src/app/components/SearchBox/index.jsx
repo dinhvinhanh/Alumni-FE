@@ -25,7 +25,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'center'
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -37,9 +37,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '0ch',
       '&:focus': {
-        width: '20ch',
+        width: '45ch',
       },
     },
   },
@@ -49,10 +49,10 @@ export default function SearchBox({ className = ''}) {
   return (
     <Search className={className}>
       <SearchIconWrapper>
-        <SearchIcon />
+        <SearchIcon style={{ cursor: 'pointer' }}/>
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Tìm kiếm ..."
         inputProps={{ 'aria-label': 'search' }}
       />
     </Search>

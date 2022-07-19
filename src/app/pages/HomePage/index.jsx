@@ -9,15 +9,15 @@ import AlumniFace from 'app/containers/AlumniFace';
 import Benefit from '../../components/Benefit';
 const slideImages = [
   {
-    url: 'https://static.remove.bg/remove-bg-web/5c20d2ecc9ddb1b6c85540a333ec65e2c616dbbd/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg',
+    url: 'https://www.fit.uet.vnu.edu.vn/wp-content/uploads/2019/06/Tot-nghiep.jpg',
     caption: 'Slide 1'
   },
   {
-    url: 'https://www.w3schools.com/w3css/img_lights.jpg',
+    url: 'https://uet.vnu.edu.vn/wp-content/uploads/2017/04/MG_7643-1.jpg',
     caption: 'Slide 2'
   },
   {
-    url: 'https://i.stack.imgur.com/QqRWG.jpg',
+    url: 'https://uet.vnu.edu.vn/wp-content/uploads/2017/04/Thanh-nien-Truong-DHCN-1.jpg',
     caption: 'Slide 3'
   },
 ];
@@ -26,20 +26,24 @@ export function HomePage() {
   return (
     <>
       <div>
-        <Slide>
-          {slideImages.map((slideImage, index)=> (
-            <div className="each-slide" key={index}>
-              <img src={slideImage.url} alt=""
-                   style={{
-                     width: '100%',
-                     height: 600,
-                   }}
-              />
-            </div>
-          ))}
-        </Slide>
+        {/* <div className={'bg-gradient-to-b from-blue-200 to-transparent'}> */}
+        {/*   <div className={'w-container mx-auto'}> */}
+        {/*     <Slide> */}
+        {/*       {slideImages.map((slideImage, index)=> ( */}
+        {/*         <div className="each-slide" key={index}> */}
+        {/*           <img src={slideImage.url} alt="" */}
+        {/*              style={{ */}
+        {/*                width: '100%', */}
+        {/*                height: 600, */}
+        {/*              }} */}
+        {/*           /> */}
+        {/*         </div> */}
+        {/*       ))} */}
+        {/*     </Slide> */}
+        {/*   </div> */}
+        {/* </div> */}
         <Box style={{ display: 'flex', justifyContent: 'center' }}>
-          <Grid container width={1200} spacing={12} paddingY={5}>
+          <Grid container width={1200} spacing={12}>
             <Grid item xl={7}>
               <News />
             </Grid>

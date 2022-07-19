@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   threeLine: {
-    color: 'grey',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontSize: '15px',

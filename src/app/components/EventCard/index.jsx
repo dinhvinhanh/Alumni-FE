@@ -26,7 +26,7 @@ export function EventCard(props) {
           <p className={'text-black'}>{location}</p>
         </div>
       </div>
-      <a href='/news' className={`${classes.viewMore} float-right text-black hover:underline hover:text-red-900 italic text-slate-400`}>Xem thêm</a>
+      <div href='/news' className={`${classes.viewMore} float-right text-black hover:underline hover:text-red-900 italic text-slate-400`}>Xem thêm</div>
     </a>
   );
 };
