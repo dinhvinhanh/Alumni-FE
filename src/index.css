@@ -21,8 +21,10 @@ code {
   background-color: #015198;
 }
 
-.w-container {
-  width: 1200px;
+@media screen and (min-width: 768px) {
+  .w-container {
+    width: 1200px;
+  }
 }
 
 .cool-link {

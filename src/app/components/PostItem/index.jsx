@@ -15,7 +15,7 @@ export function PostItem(props) {
   return (
     <a href={url} className={'flex mt-2 mb-4 border-b-2 border-slate-100 pb-4 relative'} ref={ref}>
       <div className={classes.imageWrapper}>
-        <img src={image} alt='post' />
+        <img src={image} alt='post' className={'w-36 md:w-auto'}/>
       </div>
       <div className={classes.postWrapper}>
         <span className={`${classes.time} text-gray-300 ${responsive}`} >{time}</span>

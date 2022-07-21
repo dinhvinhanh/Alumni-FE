@@ -4,9 +4,7 @@ import AdminPage from '../pages/AdminPage';
 
 const AdminLayout = () => {
   return (
-    <>
-      <Route path="/*" component={AdminPage} exact={true} />
-    </>
+    <AdminPage />
   );
 };
 
