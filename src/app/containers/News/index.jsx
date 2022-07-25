@@ -3,12 +3,12 @@ import CategoryLabel from 'app/components/CategoryLabel';
 import { PostItem } from 'app/components/PostItem';
 import useStyles from './styles';
 import { useGetPosts } from '../../../queries/alumni';
-export function News(props) {
+export function News({ className = '' }) {
   const classes = useStyles();
   const { data } = useGetPosts('news', 1, 5);
 
   return (
-    <div>
+    <div className={className}>
       <CategoryLabel url={''} text={'Tin tức'}/>
       <div>
         {

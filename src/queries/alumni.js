@@ -1,7 +1,12 @@
 import { useQuery } from 'react-query';
-import { getPosts } from 'service/core';
+import { getPostDetail, getPosts } from 'service/posts';
 
 export const useGetPosts = (category, page, limit) => useQuery(
-    'sdjalf',
+    'useGetPosts',
     () => getPosts(category, page, limit)
   );
+
+export const useGetPostDetail = (categoryId, postId) => useQuery(
+  'useGetPostDetail',
+  () => getPostDetail(categoryId, postId)
+);

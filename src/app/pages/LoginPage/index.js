@@ -1,8 +1,13 @@
+import { Helmet } from 'react-helmet-async';
+
 export default function LoginPage() {
   return (
     <div
       className="flex flex-col items-center justify-center"
     >
+      <Helmet>
+        <title>Đăng nhập</title>
+      </Helmet>
       <div
         className="
           flex flex-col

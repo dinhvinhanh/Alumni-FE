@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import SearchBox from '../../components/SearchBox';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
+import Logo from './assets/logo.png';
 
 export function HeaderWrapper() {
 
@@ -12,13 +13,17 @@ export function HeaderWrapper() {
       <div className="w-container flex justify-between mx-auto">
         {/* left header */}
         <div className="flex items-center">
-          <img
-            src="https://uet.vnu.edu.vn/wp-content/uploads/2017/02/logo2_new.png"
-            className={'w-12 cursor-pointer'}
-            alt=""
-          />
-          <h1 className={'font-bold ml-3 cursor-pointer'}>VNU-UET</h1>
-          <div className={'bg-blue-100 px-0 md:px-2 py-1 ml-4 rounded text-blue-900 text-sm animate-pulse cursor-pointer'}>Join the alumni community</div>
+          <Link to={'/'}>
+            <img
+              src={Logo}
+              className={'w-12 cursor-pointer'}
+              alt=""
+            />
+          </Link>
+          <Link to={'/'}>
+            <h1 className={'font-bold ml-3 cursor-pointer'}>VNU-UET</h1>
+          </Link>
+          <div className={'bg-blue-100 px-0 md:px-2 py-1 ml-4 rounded text-blue-900 text-sm animate-pulse cursor-pointer text-center'}>Join the alumni community</div>
         </div>
 
         <div className="inset-y-0 left-0 flex items-center sm:hidden">
@@ -48,10 +53,10 @@ export function HeaderWrapper() {
         {/* right header */}
         <div className={'items-center hidden md:flex'}>
           <Link to={'/'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Trang chủ</Link>
+          <Link to={'/about'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Giới thiệu</Link>
           <Link to={'/category'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Tin tức - Sự kiện</Link>
           <Link to={'/'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Gương mặt cựu sinh viên</Link>
-          <Link to={'/'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Cơ hội việc làm</Link>
-          <Button variant="outlined" className={'ml-6'}>Đăng nhập</Button>
+          <Link to={'/login'} className={'ml-6'}><Button variant="outlined">Đăng nhập</Button></Link>
         </div>
       </div>
 

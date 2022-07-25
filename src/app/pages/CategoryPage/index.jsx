@@ -3,12 +3,16 @@ import { PostItem } from '../../components/PostItem';
 import { Pagination } from '@mui/material';
 import { useGetPosts } from '../../../queries/alumni';
 import CategoryLabel from '../../components/CategoryLabel';
+import { Helmet } from 'react-helmet-async';
 
 export function CategoryPage() {
   const { data } = useGetPosts('', 1, 5);
   console.log(data);
   return (
     <div className="mx-auto w-full w-container mt-6 px-3 md:px-0">
+      <Helmet>
+        <title>Tin tức - Sự kiện</title>
+      </Helmet>
       <CategoryLabel url={''} text={'Sự kiện'}/>
       {data && data.map(((value, index) =>
         <PostItem

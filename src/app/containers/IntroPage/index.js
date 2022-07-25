@@ -3,14 +3,14 @@ import IntroImage from '../HeaderWrapper/assets/ugroup.png';
 
 export default function IntroPage(){
   return (
-      <div className="w-container justify-between mx-auto">
-        <div className={'flex justify-between'}>
+      <div className="w-container justify-between mx-auto p-3 md:p-0">
+        <div className={'flex justify-between relative'}>
           <div
             className={'flex justify-center flex-col'}
             style={{ width: '40%' }}
           >
-            <h1 className={'font-bold text-2xl text-cyan-900'}>Mạng lưới cựu sinh viên</h1>
-            <p className={'text-cyan-800 my-6'}>
+            <h1 className={'font-bold text-2xl text-cyan-900 absolute md:relative top-5 md:top-0'}>Mạng lưới cựu sinh viên</h1>
+            <p className={'text-cyan-800 my-4 md:my-6'}>
               Nắm bắt cơ hội giúp phát triển nghề nghiệp, tăng cường mối quan hệ, góp phần vào lợi ích chung của cộng đồng cựu sinh viên.
               Duy trì kết nối và tương tác mọi lúc, mọi nơi trên mọi thiết bị.
             </p>

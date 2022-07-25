@@ -37,3 +37,8 @@ export const getPosts = async (
     }
   ]
 };
+
+export const getPostDetail = async (categoryId, postId) => {
+  const data = await axios.get( config.apiEndpoint +`/api/articles/${postId}`)
+  return data.data;
+}

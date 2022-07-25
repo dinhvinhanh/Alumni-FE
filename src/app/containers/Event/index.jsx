@@ -2,9 +2,9 @@ import * as React from 'react';
 import CategoryLabel from 'app/components/CategoryLabel';
 import { Fade } from 'react-slideshow-image';
 import { EventCard } from 'app/components/EventCard';
-export function Event(props) {
+export function Event({ className = '' }) {
   return (
-    <div>
+    <div className={className}>
       <CategoryLabel url={''} text={'Sự kiện'}/>
       <div>
         <Fade>
