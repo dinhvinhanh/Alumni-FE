@@ -1,10 +1,9 @@
 import * as React from 'react';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import { useGetPostDetail } from '../../../queries/alumni';
-import { CircularProgress, Skeleton } from '@mui/material';
+import { useGetPostDetail } from 'queries/alumni';
+import { CircularProgress } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
-import { useEffect, useState } from 'react';
 
 export function PostDetail() {
   const { data, isSuccess } = useGetPostDetail('news', 1);

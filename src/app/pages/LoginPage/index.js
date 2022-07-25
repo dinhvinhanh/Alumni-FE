@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginPage() {
+  const history = useHistory();
   return (
     <div
       className="flex flex-col items-center justify-center"
@@ -123,6 +125,7 @@ export default function LoginPage() {
             <div className="flex w-full">
               <button
                 type="submit"
+                onClick={() => history.push('/admin')}
                 className="
                   flex
                   mt-2
