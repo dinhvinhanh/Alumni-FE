@@ -2,6 +2,8 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useHistory } from 'react-router-dom';
+import { useCallback } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -25,7 +27,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   pointerEvents: 'none',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'center'
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -37,22 +39,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '0ch',
       '&:focus': {
-        width: '20ch',
+        width: '45ch',
       },
     },
   },
 }));
 
 export default function SearchBox({ className = ''}) {
+  const history = useHistory();
+  const handleSearchSubmit = useCallback((event) => {
+    if (event.key === 'Enter') {
+      history.push({
+        pathname: '/search',
+        search: `?q=${event.target.value}`
+      });
+    }
+  }, [history]);
   return (
     <Search className={className}>
-      <SearchIconWrapper>
-        <SearchIcon />
+      <SearchIconWrapper >
+        <SearchIcon style={{ cursor: 'pointer' }} onClick={handleSearchSubmit}/>
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        onKeyPress={handleSearchSubmit}
+        placeholder="Tìm kiếm ..."
         inputProps={{ 'aria-label': 'search' }}
       />
     </Search>

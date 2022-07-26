@@ -38,7 +38,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static" className="bg-red-900">
+    <AppBar position="static" className="bg-primary">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <CottageIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

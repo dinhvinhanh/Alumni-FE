@@ -5,6 +5,8 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
+import { MODAL_TYPE } from 'utils/constants';
+import Upload from '../Upload';
 
 const style = {
   position: 'absolute',
@@ -18,13 +20,14 @@ const style = {
   p: 4,
 };
 
-export default function AlumniModal({ id, open, onClose}) {
+export default function AlumniModal({ id, open, onClose, type}) {
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
+        className={'mt-24'}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -34,12 +37,19 @@ export default function AlumniModal({ id, open, onClose}) {
         <Fade in={open}>
           <Box sx={style}>
             <CloseIcon className={'float-right cursor-pointer'} onClick={onClose}/>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              hien chi tiet thong tin cuu sinh vien
+            <Typography id="transition-modal-title" className={'mb-6 font-bold'} variant="h6" component="h2">
+              {type}
             </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+            {(() => {
+              switch (type) {
+                case MODAL_TYPE.ADD_ALUMNI:
+                  return <>xin chao</>
+                case MODAL_TYPE.FILE_UPLOAD:
+                  return <Upload />
+                default:
+                  return <>view thong tin</>
+              }
+            })()}
           </Box>
         </Fade>
       </Modal>

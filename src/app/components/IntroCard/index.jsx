@@ -11,7 +11,6 @@ export default function IntroCard({ image, url, title, description, label}) {
   const classes = useStyles();
   return (
     <div>
-
       <Card classes={{
         root: 'shadow-cyan-500/50 border-1',
       }} href={url}>

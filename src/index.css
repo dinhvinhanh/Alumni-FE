@@ -16,3 +16,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-primary {
+  background-color: #015198;
+}
+
+@media screen and (min-width: 768px) {
+  .w-container {
+    width: 1200px;
+  }
+}
+
+.cool-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.cool-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #3333e7;
+  transition: width .3s;
+}
+
+.cool-link:hover::after {
+  width: 100%;
+}

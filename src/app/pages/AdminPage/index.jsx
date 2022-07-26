@@ -18,7 +18,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import AlumniControl from '../../containers/AlumniControl';
+import { Link, Route, Switch, useLocation } from 'react-router-dom';
+import AlumniControl from 'app/containers/AlumniControl';
+import PostControl from 'app/containers/PostControl';
+import AccountControl from 'app/containers/AccountControl';
+import Logo from 'app/containers/HeaderWrapper/assets/logo.png';
 
 const drawerWidth = 240;
 
@@ -90,6 +94,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function AdminPage() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const location = useLocation();
+  console.log(location)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,7 +109,7 @@ export default function AdminPage() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} style={{ background: 'blue' }}>
-        <Toolbar>
+        <Toolbar style={{ background: '#3d3d3d'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -123,7 +129,18 @@ export default function AdminPage() {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <div>Dai hoc quoc gia ha noi</div>
+          <div className="flex items-center justify-items-start relative -left-4">
+            <Link to={'/admin'}>
+              <img
+                src={Logo}
+                className={'w-12 cursor-pointer'}
+                alt=""
+              />
+            </Link>
+            <Link to={'/admin'}>
+              <h1 className={'font-bold ml-3 cursor-pointer uppercase'}>ALUMNI-UET</h1>
+            </Link>
+          </div>
 
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -131,58 +148,74 @@ export default function AdminPage() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Bài viết', 'Cựu sinh viên', 'Tài khoản'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+          {[
+            { title: 'Cựu sinh viên', link: 'cuu-sinh-vien' },
+            { title: 'Bài viết', link: 'bai-viet' },
+            { title: 'Tài khoản', link: 'tai-khoan' }
+          ].map((value, index) => (
+            <Link to={`/admin/${value.link}`} key={index}>
+              <ListItem  disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={value.title} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+          {[
+            { title: 'Thông báo', link: '/admin/thong-bao' },
+            { title: 'Quay về trang chủ', link: '/' },
+            { title: 'Đăng xuất', link: '/' }
+          ].map((value, index) => (
+            <Link to={`${value.link}`} key={index} >
+              <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={value.title} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <AlumniControl />
+        <Switch>
+          <Route path={'/admin/bai-viet'} component={PostControl} />
+          <Route path={'/admin/tai-khoan'} component={AccountControl} />
+          <Route path={['/admin', '/admin/cuu-sinh-vien']} component={AlumniControl} />
+        </Switch>
       </Box>
     </Box>
   );

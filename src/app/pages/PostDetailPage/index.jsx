@@ -12,7 +12,7 @@ export function PostDetailPage() {
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
             aria-label="breadcrumb"
-            className={'uppercase text-red-900 font-bold'}
+            className={'uppercase text-red-900 font-bold px-3 md:px-0'}
           >
             {[
               <a href={'/dashboard'}>admin</a>,
@@ -20,7 +20,7 @@ export function PostDetailPage() {
             ]}
           </Breadcrumbs>
         </Grid>
-        <Grid item xl={12} style={{ paddingTop: '20px' }}>
+        <Grid item xl={12} style={{ paddingTop: '20px' }} xs={12} sm={12}>
           <PostDetail />
         </Grid>
       </Grid>

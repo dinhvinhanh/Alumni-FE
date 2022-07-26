@@ -1,8 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   threeLine: {
-    color: 'grey',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     fontSize: '15px',
@@ -11,12 +10,22 @@ const useStyles = makeStyles(() => ({
     height: '55px',
     display: '-webkit-box',
     '-webkit-box-orient': 'vertical',
+    [theme.breakpoints.down('sm')]: {
+      '-webkit-line-clamp': '2',
+      height: '35px',
+    }
   },
   imageWrapper: {
     width: '30%',
     marginRight: '16px',
     '& img': {
       borderRadius: '5px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& img': {
+        height: '65px',
+        marginTop: '8px'
+      }
     }
   },
   postWrapper: {

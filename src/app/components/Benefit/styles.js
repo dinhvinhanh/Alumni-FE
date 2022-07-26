@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     zIndex: 1000,
   },
   contentBody: {
-    width: '700px',
+    width: '100%',
     padding: '20px',
     borderRadius: '10px',
     backgroundColor: 'rgba(0,0,0,0.8)',
