@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import EmailIcon from '@mui/icons-material/Email';
+import Logo from 'app/containers/HeaderWrapper/assets/logo.png';
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
       <div className={'bg-primary px-6'}>
         <div className={'w-container py-5 flex-col flex md:flex-row justify-between mx-auto'}>
           <div className={'w-3/12 hidden md:block'}>
-            <img src={'https://www.fit.uet.vnu.edu.vn/wp-content/themes/fit2019/images/fit-logo.svg'} alt='' className={'w-6/12'}/>
+            <img src={Logo} alt='' className={'w-6/12'}/>
           </div>
           <div className={'md:w-4/12'}>
             <h1 className="uppercase mb-3 text-center md:text-left font-bold md:font-medium">Mạng lưới cựu sinh viên</h1>
