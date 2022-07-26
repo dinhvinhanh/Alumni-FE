@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import { getPostDetail, getPosts } from 'service/posts';
 
-export const useGetPosts = (category, page, limit) => useQuery(
+export const useGetPosts = (type, page, limit, textSearch = undefined) => useQuery(
     'useGetPosts',
-    () => getPosts(category, page, limit)
+    () => getPosts(type, page, limit)
   );
 
 export const useGetPostDetail = (categoryId, postId) => useQuery(

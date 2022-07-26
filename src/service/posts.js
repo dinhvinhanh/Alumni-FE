@@ -2,9 +2,10 @@ import axios from 'axios';
 import config from 'config';
 
 export const getPosts = async (
-  category,
+  type,
   page = 1,
-  limit = 5
+  limit = 5,
+  textSearch = undefined
 ) => {
   return [
     {

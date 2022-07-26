@@ -2,9 +2,11 @@ import * as React from 'react';
 import useStyles from './styles';
 import { Button } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useHistory } from 'react-router-dom';
 
 export default function Benefit({ bgImage }) {
   const classes = useStyles();
+  const history = useHistory();
   return (
     <div style={{
       backgroundImage: `url(${bgImage})`,
@@ -24,6 +26,7 @@ export default function Benefit({ bgImage }) {
             color="secondary"
             startIcon={<FavoriteIcon />}
             className={'my-4'}
+            onClick={() => history.push('/login')}
           >
             Khám phá ngay
           </Button>

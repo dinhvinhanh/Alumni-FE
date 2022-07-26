@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const history = useHistory();
   return (
     <div
       className="flex flex-col items-center justify-center"
     >
       <Helmet>
-        <title>Đăng nhập</title>
+        <title>Đăng ký tài khoản</title>
       </Helmet>
       <div
         className="
@@ -26,10 +26,10 @@ export default function LoginPage() {
         "
       >
         <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
-          Đăng nhập
+          Đăng ký tài khoản
         </div>
-        <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-          Nhập thông tin tài khoản để tiếp tục
+        <div className="mt-4 self-center text-xl sm:text-sm text-gray-800 text-center">
+          Vui lòng nhập thông tin của bạn, chúng tôi sẽ kiểm tra và tạo tài khoản cho bạn
         </div>
 
         <div className="mt-10">
@@ -73,7 +73,7 @@ export default function LoginPage() {
                     focus:outline-none focus:border-blue-400
                     md:w-96
                   "
-                  placeholder="Enter your email"
+                  placeholder="Nhập vào email sinh viên nhà trường cấp"
                 />
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function LoginPage() {
               <label
                 htmlFor="password"
                 className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-              >Mật khẩu</label
+              >Mã sinh viên</label
               >
               <div className="relative">
                 <div
@@ -104,8 +104,7 @@ export default function LoginPage() {
 
                 <input
                   id="password"
-                  type="password"
-                  name="password"
+                  name="ma_sv"
                   className="
                     text-sm
                     placeholder-gray-500
@@ -117,7 +116,7 @@ export default function LoginPage() {
                     py-2
                     focus:outline-none focus:border-blue-400
                   "
-                  placeholder="Enter your password"
+                  placeholder="Nhập vào mã sinh viên của bạn"
                 />
               </div>
             </div>
@@ -144,7 +143,7 @@ export default function LoginPage() {
                   ease-in
                 "
               >
-                <span className="mr-2 uppercase">Đăng nhập</span>
+                <span className="mr-2 uppercase">Tiếp tục</span>
                 <span>
                   <svg
                     className="h-6 w-6"
@@ -178,11 +177,11 @@ export default function LoginPage() {
           "
         >
           <span className="ml-2"
-          >Bạn chưa có tài khoản?
+          >Bạn đã có tài khoản?
             <Link
-              to={'/register'}
+              to={'/login'}
               className="text-xs ml-2 text-blue-500 font-semibold"
-            >Tạo ngay</Link
+            >Đăng nhập ngay</Link
             ></span
           >
         </a>

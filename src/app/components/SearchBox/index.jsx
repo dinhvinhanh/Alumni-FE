@@ -2,6 +2,8 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { useHistory } from 'react-router-dom';
+import { useCallback } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -46,12 +48,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchBox({ className = ''}) {
+  const history = useHistory();
+  const handleSearchSubmit = useCallback((event) => {
+    if (event.key === 'Enter') {
+      history.push({
+        pathname: '/search',
+        search: `?q=${event.target.value}`
+      });
+    }
+  }, [history]);
   return (
     <Search className={className}>
-      <SearchIconWrapper>
-        <SearchIcon style={{ cursor: 'pointer' }}/>
+      <SearchIconWrapper >
+        <SearchIcon style={{ cursor: 'pointer' }} onClick={handleSearchSubmit}/>
       </SearchIconWrapper>
       <StyledInputBase
+        onKeyPress={handleSearchSubmit}
         placeholder="Tìm kiếm ..."
         inputProps={{ 'aria-label': 'search' }}
       />
