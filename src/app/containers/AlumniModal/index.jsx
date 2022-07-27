@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { MODAL_TYPE } from 'utils/constants';
 import Upload from '../../components/Upload';
+import ProfileForm from '../../components/ProfileForm';
 
 const style = {
   position: 'absolute',
@@ -27,7 +28,7 @@ export default function AlumniModal({ id, open, onClose, type}) {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        className={'mt-24'}
+        className={`mt-24 ${type !== MODAL_TYPE.FILE_UPLOAD && 'top-1/4 max-h-96 '}`}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -43,11 +44,11 @@ export default function AlumniModal({ id, open, onClose, type}) {
             {(() => {
               switch (type) {
                 case MODAL_TYPE.ADD_ALUMNI:
-                  return <>xin chao</>
+                  return <ProfileForm mode={'add'}/>
                 case MODAL_TYPE.FILE_UPLOAD:
                   return <Upload />
                 default:
-                  return <>view thong tin</>
+                  return <ProfileForm mode={'add'}/>
               }
             })()}
           </Box>

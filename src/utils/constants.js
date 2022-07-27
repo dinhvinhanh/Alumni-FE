@@ -4,6 +4,6 @@ export const STALE_TIME = {
 
 export const MODAL_TYPE = {
   FILE_UPLOAD: 'Tải lên file dữ liệu',
-  ADD_ALUMNI: 'add alumni',
-  VIEW_ALUMNI: 'view alumni',
+  ADD_ALUMNI: 'Thêm cựu sinh viên',
+  VIEW_ALUMNI: 'Thông tin chi tiết',
 }

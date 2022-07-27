@@ -11,6 +11,8 @@ import { CKEditor } from 'ckeditor4-react';
 import CustomInput from '../../components/CustomInput';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import { PostItem } from '../../components/PostItem';
+import { Pagination } from '@mui/material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -96,7 +98,50 @@ export default function PostControl() {
           </div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Quan ly bai dang
+          <PostItem data={{
+            url: '/post/slug-bai-viet',
+            time: '12:00 24/11/2015',
+            title: 'xin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xem',
+            description: 'day la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai viet',
+            image: 'https://thietkewebhcm.com.vn/an-featured-image-trong-bai-viet-wordpress/imager_8383.jpg',
+            controlMode: true
+          }} />
+          <PostItem data={{
+            url: '/post/slug-bai-viet',
+            time: '12:00 24/11/2015',
+            title: 'xin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xem',
+            description: 'day la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai viet',
+            image: 'https://thietkewebhcm.com.vn/an-featured-image-trong-bai-viet-wordpress/imager_8383.jpg',
+            controlMode: true
+          }} />
+          <PostItem data={{
+            url: '/post/slug-bai-viet',
+            time: '12:00 24/11/2015',
+            title: 'xin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xem',
+            description: 'day la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai viet',
+            image: 'https://thietkewebhcm.com.vn/an-featured-image-trong-bai-viet-wordpress/imager_8383.jpg',
+            controlMode: true
+          }} />
+          <PostItem data={{
+            url: '/post/slug-bai-viet',
+            time: '12:00 24/11/2015',
+            title: 'xin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xem',
+            description: 'day la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai viet',
+            image: 'https://thietkewebhcm.com.vn/an-featured-image-trong-bai-viet-wordpress/imager_8383.jpg',
+            controlMode: true
+          }} />
+          <PostItem data={{
+            url: '/post/slug-bai-viet',
+            time: '12:00 24/11/2015',
+            title: 'xin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xemxin chao xem',
+            description: 'day la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai vietday la bai viet',
+            image: 'https://thietkewebhcm.com.vn/an-featured-image-trong-bai-viet-wordpress/imager_8383.jpg',
+            controlMode: true
+          }} />
+
+          <div className={'flex justify-end mb-2 mt-9'}>
+            <Pagination count={10} variant="outlined" color="primary" />
+          </div>
         </TabPanel>
       </SwipeableViews>
     </Box>

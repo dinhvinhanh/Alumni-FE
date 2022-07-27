@@ -91,11 +91,17 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const NAV_TEXT = {
+  '/admin': 'Quản lý cựu sinh viên',
+  '/admin/cuu-sinh-vien': 'Quản lý cựu sinh viên',
+  '/admin/bai-viet': 'Quản lý bài viết',
+  '/admin/tai-khoan': 'Quản lý tài khoản'
+}
+
 export default function AdminPage() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const location = useLocation();
-  console.log(location)
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -123,7 +129,7 @@ export default function AdminPage() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" className={'uppercase text-white font-bold'}>
-            Quan ly cuu sinh vien
+            {NAV_TEXT[location.pathname]}
           </Typography>
         </Toolbar>
       </AppBar>
