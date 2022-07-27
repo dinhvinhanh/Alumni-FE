@@ -2,7 +2,7 @@ import 'react-multi-carousel/lib/styles.css';
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 import AlumniTable from 'app/components/AlumniTable';
-import AlumniModal from 'app/components/AlumniModal';
+import AlumniModal from 'app/containers/AlumniModal';
 import Button from '@mui/material/Button';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import AssessmentIcon from '@mui/icons-material/Assessment';

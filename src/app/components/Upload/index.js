@@ -1,21 +1,71 @@
-import { ReactComponent as UploadIcon } from '../AlumniModal/assets/upload-icon.svg';
+import { ReactComponent as UploadIcon } from '../../containers/AlumniModal/assets/upload-icon.svg';
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import { LinearProgress } from '@mui/material';
+import SuccessIcon from './assets/success.png';
 
 export default function Upload() {
+  const [file, setFile] = useState(null);
+  // mock loading state
+  const [isLoading, setLoading] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
+  const handleSelectedFile = (e) => {
+    setFile(e.target.files[0]);
+  }
+
+  const handleUpload = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(true);
+    }, 3000)
+  }
+
   return (
-  <div className="flex justify-center items-center w-full">
-    <label htmlFor="dropzone-file"
-           className="flex flex-col justify-center items-center w-full
-                     h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed
-                     cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700
-                     hover:bg-gray-100 dark:border-gray-600
-                     dark:hover:border-gray-500 dark:hover:bg-gray-600">
-      <div className="flex flex-col justify-center items-center pt-5 pb-6">
-        <UploadIcon />
-        <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click để chọn file</span></p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">CSV, XLS or XLSX files</p>
-      </div>
-      <input id="dropzone-file" type="file" className="hidden" accept={'.xlsx, .xls, .csv'}/>
-    </label>
-  </div>
+    <div>
+      {!file && !isLoading && (
+        <div className="flex justify-center items-center w-full">
+            <label htmlFor="dropzone-file"
+                        className="flex flex-col justify-center items-center w-full
+                           h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed
+                           cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700
+                           hover:bg-gray-100 dark:border-gray-600
+                           dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                <UploadIcon />
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click để chọn file</span>
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">CSV, XLS or XLSX files</p>
+              </div>
+              <input id="dropzone-file" type="file" className="hidden" accept={'.xlsx, .xls, .csv'}
+                     onChange={handleSelectedFile} />
+            </label>
+        </div>
+      )}
+      {file && !isLoading && !isSuccess && (
+        <div>
+          <div className={'flex'}>
+            <h1>Bạn đã chọn file: </h1>
+            <h1 className={'font-bold ml-4'}>{file.name}</h1>
+          </div>
+          <div className="flex justify-end mt-6">
+            <Button variant="outlined" onClick={() => setFile(null)}>Chọn file khác</Button>
+            <Button variant="contained" className={'bg-blue-500 ml-6'} onClick={handleUpload}>Tải lên</Button>
+          </div>
+        </div>
+      )}
+      {file && isLoading && (
+        <div>
+          <h1 className={'mb-4'}>Đang tải file lên...</h1>
+          <LinearProgress />
+        </div>
+      )}
+      {file && !isLoading && isSuccess && (
+        <div>
+          <img src={SuccessIcon} alt={''} className={'w-56 mx-auto'}/>
+          <h1 className={'mb-4 text-center font-bold text-2xl text-green-600'}>Thành công !</h1>
+        </div>
+      )}
+    </div>
   );
 };

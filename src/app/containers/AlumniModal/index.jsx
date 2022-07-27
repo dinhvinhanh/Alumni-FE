@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { MODAL_TYPE } from 'utils/constants';
-import Upload from '../Upload';
+import Upload from '../../components/Upload';
 
 const style = {
   position: 'absolute',
