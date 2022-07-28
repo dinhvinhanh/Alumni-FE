@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import useStyles from './styles';
 
-export default function AlumniCard() {
+export default function AlumniCard({ title, description, thumbnail, time}) {
   const classes = useStyles();
   return (
     <div className="" style={{
@@ -17,7 +17,7 @@ export default function AlumniCard() {
           <CardMedia
             component="img"
             height="100"
-            image="https://images.theconversation.com/files/457052/original/file-20220408-15-pl446k.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1000&fit=clip"
+            image={thumbnail}
             alt="green iguana"
             classes={{
               img: classes.imageCard,
@@ -25,17 +25,16 @@ export default function AlumniCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Lizard
+              {title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+              {description}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            {time}
           </Button>
         </CardActions>
       </Card>

@@ -20,7 +20,7 @@ export function HomePage() {
       <div className="w-container mx-auto p-3 md:p-0">
         <AlumniFace />
       </div>
-      <Benefit bgImage={'https://i1.connections.vn/alumni.hanu.vn/img/N2.jpg?resize=1907,481&quality=100&strip=all'} />
+      <Benefit bgImage={'https://uet.vnu.edu.vn/en/wp-content/uploads/2020/05/IMG_8402.jpg'} />
     </>
   );
 };

@@ -8,7 +8,7 @@ import Logo from './assets/logo.png';
 export function HeaderWrapper() {
 
   return (
-    <div className={'py-6 px-3 md:px-0'}>
+    <div className={'py-6 px-3 md:px-0 '}>
       {/* app bar */}
       <div className="w-container flex justify-between mx-auto">
         {/* left header */}

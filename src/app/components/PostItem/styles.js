@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   imageWrapper: {
-    width: '30%',
+    width: 'fit-content',
     marginRight: '16px',
     '& img': {
       borderRadius: '5px',

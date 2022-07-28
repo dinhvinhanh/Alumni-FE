@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   overlay: {
-    backgroundColor: 'rgba(113,108,108,0.5)',
+    backgroundColor: 'rgba(113,108,108,0.8)',
     zIndex: 100,
     height: '100%',
   },

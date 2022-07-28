@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import { MODAL_TYPE } from 'utils/constants';
+import { Helmet } from 'react-helmet-async';
 
 export default function AlumniControl({ deviceType = 'desktop' }) {
   const [open, setOpen] = useState(false);
@@ -20,6 +21,9 @@ export default function AlumniControl({ deviceType = 'desktop' }) {
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>Quản lý cựu sinh viên</title>
+      </Helmet>
       <Button
         variant="outlined"
         startIcon={<ControlPointIcon />}

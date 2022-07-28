@@ -13,11 +13,11 @@ export default function Footer() {
           </div>
           <div className={'md:w-4/12'}>
             <h1 className="uppercase mb-3 text-center md:text-left font-bold md:font-medium">Mạng lưới cựu sinh viên</h1>
-            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Trường đại học công nghệ thông tin</p>
-            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Địa chỉ: ksdf sdf ksdf asdflsadjf sdf </p>
-            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Điện thoại: ksdf sdf ksdf asdflsadjf sdf </p>
-            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Fax: (84-24) 38345 4545 45</p>
-            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Email: meo@meo.com</p>
+            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Trường Đại học Công nghệ, Đại học Quốc Gia Hà Nội</p>
+            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Địa chỉ: E3, 144 Xuân Thủy, Cầu Giấy, Hà Nội</p>
+            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Điện thoại: 024.37547.461</p>
+            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Fax: 024.37547.460</p>
+            <p className={'text-sm text-blue-50 leading-7 md:text-left text-center'}>Email: uet@vnu.edu.vn</p>
           </div>
           <div className={'w-3/12 hidden md:block'}>
             <a href="/"><p className={'text-sm text-blue-50 leading-7'}>Giới thiệu</p></a>
@@ -25,9 +25,9 @@ export default function Footer() {
             <p className={'text-sm text-blue-50 leading-7'}>Gương mặt cựu sinh viên</p>
           </div>
           <div className={'w-2/12 hidden md:block'}>
-            <p className={'text-sm text-blue-50 leading-7'}>Điện thoại: ksdf sdf ksdf asdflsadjf sdf </p>
-            <p className={'text-sm text-blue-50 leading-7'}>Fax: (84-24) 38345 4545 45</p>
-            <p className={'text-sm text-blue-50 leading-7'}>Email: meo@meo.com</p>
+            <p className={'text-sm text-blue-50 leading-7'}>Chia sẻ </p>
+            <p className={'text-sm text-blue-50 leading-7'}>Hợp tác </p>
+            <p className={'text-sm text-blue-50 leading-7'}>Cơ hội việc làm</p>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           style={{ width: '1200px' }}
         >
           <p className={'text-sm flex flex-col md:flex-row'}>
-            <span>&copy; 2022 - Trường Đại học Quốc Gia, All Rights Reserved |</span>
+            <span>&copy; 2022 - Trường Đại học Quốc Gia Hà Nội, All Rights Reserved |</span>
             <span className={'animate-pulse text-center'}> Powered by Đinh Vĩnh Anh</span>
           </p>
           <div className={'md:flex hidden'}>

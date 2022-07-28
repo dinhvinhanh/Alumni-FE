@@ -22,41 +22,37 @@ const columns = [
   },
   {
     id: 'year',
-    label: 'Niên khóa',
+    label: 'Ngày sinh',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'density',
-    label: 'Density',
+    id: 'class',
+    label: 'Lớp',
     minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
+    align: 'center',
   },
 ];
 
-function createData(name, code, email, year) {
-  const density = email / year;
-  return { name, code, email, year, density };
+function createData(name, code, year, cLass) {
+  const email = code + '@vnu.edu.vn'
+  return { name, code, email, year, class: cLass };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+  createData('Vũ Văn Đại ', '17020664', '03/03/1998', 'K62AE'),
+  createData('Vũ Tiến Hiệp ', '17020289', '29/01/1999', 'K62AE'),
+  createData('Nguyễn Đắc Hiệu ', '17021190', '30/01/1998', 'K62AE'),
+  createData('Hoàng Đình Hoan ', '17020756', '03/10/1998', 'K62AE'),
+  createData('Bành Đức Minh ', '17023721', '21/02/1998', 'K62AE'),
+  createData('Hoàng Tích Phúc ', '17020202', '14/09/1998', 'K62AE'),
+  createData('Hoàng Văn Tâm ', '17024315', '22/08/1998', 'K62AE'),
+  createData('Trần Đại Việt ', '17022827', '12/11/1998', 'K62AE'),
+  createData('Lê Mai An ', '17020972', '03/02/1998', 'K62CAC'),
+  createData('Nguyễn Đăng An', '17023983', '25/06/1998', 'K62CAC'),
+  createData('Phạm Lê Việt Anh  ', '17022203', '11/09/1998', 'K62CAC'),
+  createData('Trần Đăng Anh', '1702064392', '09/12/1998', 'K62CAC'),
 ];
 
 export default function AlumniTable({ onClick }) {
