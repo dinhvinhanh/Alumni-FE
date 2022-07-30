@@ -6,12 +6,7 @@ import CategoryLabel from '../../components/CategoryLabel';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-
-function useQuery() {
-  const { search } = useLocation();
-
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+import useQuery from 'app/hooks/useQuery';
 
 export function CategoryPage() {
   const { data } = useGetPosts('', 1, 5);

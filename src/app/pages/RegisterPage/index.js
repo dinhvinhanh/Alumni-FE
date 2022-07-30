@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 
 export default function RegisterPage() {
   const history = useHistory();
+
+
   return (
     <div
       className="flex flex-col items-center justify-center"

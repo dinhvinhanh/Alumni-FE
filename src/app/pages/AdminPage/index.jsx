@@ -23,6 +23,7 @@ import AlumniControl from 'app/containers/AlumniControl';
 import PostControl from 'app/containers/PostControl';
 import AccountControl from 'app/containers/AccountControl';
 import Logo from 'app/containers/HeaderWrapper/assets/logo.png';
+import StatisticControl from 'app/containers/StatisticControl';
 
 const drawerWidth = 240;
 
@@ -157,7 +158,9 @@ export default function AdminPage() {
           {[
             { title: 'Cựu sinh viên', link: 'cuu-sinh-vien' },
             { title: 'Bài viết', link: 'bai-viet' },
-            { title: 'Tài khoản', link: 'tai-khoan' }
+            { title: 'Tài khoản', link: 'tai-khoan' },
+            { title: 'Khảo sát', link: 'khao-sat' },
+            { title: 'Thống kê ', link: 'thong-ke' }
           ].map((value, index) => (
             <Link to={`/admin/${value.link}`} key={index}>
               <ListItem  disablePadding sx={{ display: 'block' }}>
@@ -220,6 +223,7 @@ export default function AdminPage() {
         <Switch>
           <Route path={'/admin/bai-viet'} component={PostControl} />
           <Route path={'/admin/tai-khoan'} component={AccountControl} />
+          <Route path={'/admin/thong-ke'} component={StatisticControl} />
           <Route path={['/admin', '/admin/cuu-sinh-vien']} component={AlumniControl} />
         </Switch>
       </Box>

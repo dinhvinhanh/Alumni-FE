@@ -1,8 +1,30 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
+import useQuery from 'app/hooks/useQuery';
+import { useLogin } from 'mutations/alumni';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function LoginPage() {
+  const [message, setMessage] = useState('');
   const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const mutation = useLogin(email, password);
+  const query = useQuery();
+
+  const handleLogin = useCallback(async () => {
+    try {
+      await mutation.mutateAsync({ email, password });
+      history.push('/admin');
+    } catch (err) {
+      setMessage(err.response.data.message)
+    }
+  }, [email, password]);
+
+  useEffect(() => {
+    setMessage(query.get('message'));
+  }, [])
+
   return (
     <div
       className="flex flex-col items-center justify-center"
@@ -29,11 +51,10 @@ export default function LoginPage() {
           Đăng nhập
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-          Nhập thông tin tài khoản để tiếp tục
+          {message ? <h1 className={'text-blue-800 text-center'}>{message}</h1> : 'Nhập thông tin tài khoản để tiếp tục'}
         </div>
 
         <div className="mt-10">
-          <form action="#">
             <div className="flex flex-col mb-5">
               <label
                 htmlFor="email"
@@ -74,6 +95,7 @@ export default function LoginPage() {
                     md:w-96
                   "
                   placeholder="Enter your email"
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -118,6 +140,7 @@ export default function LoginPage() {
                     focus:outline-none focus:border-blue-400
                   "
                   placeholder="Enter your password"
+                  onChange={e => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -125,7 +148,7 @@ export default function LoginPage() {
             <div className="flex w-full">
               <button
                 type="submit"
-                onClick={() => history.push('/admin')}
+                onClick={handleLogin}
                 className="
                   flex
                   mt-2
@@ -162,7 +185,6 @@ export default function LoginPage() {
                 </span>
               </button>
             </div>
-          </form>
         </div>
       </div>
       <div className="flex justify-center items-center mt-6">
