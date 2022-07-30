@@ -9,12 +9,12 @@ export default function LoginPage() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const mutation = useLogin(email, password);
+  const mutation = useLogin();
   const query = useQuery();
 
   const handleLogin = useCallback(async () => {
     try {
-      await mutation.mutateAsync({ email, password });
+      await mutation.mutateAsync({ email, password })
       history.push('/admin');
     } catch (err) {
       setMessage(err.response.data.message)
@@ -51,7 +51,7 @@ export default function LoginPage() {
           Đăng nhập
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
-          {message ? <h1 className={'text-blue-800 text-center'}>{message}</h1> : 'Nhập thông tin tài khoản để tiếp tục'}
+          {message ? <h1 className={'text-red-600 text-xl text-center'}>{message}</h1> : 'Nhập thông tin tài khoản để tiếp tục'}
         </div>
 
         <div className="mt-10">

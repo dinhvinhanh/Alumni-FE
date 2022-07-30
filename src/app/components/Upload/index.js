@@ -3,22 +3,22 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { LinearProgress } from '@mui/material';
 import SuccessIcon from './assets/success.png';
+import ErrorIcon from './assets/error.png';
+import { useUploadAlumniCsv } from 'mutations/alumni';
 
 export default function Upload() {
   const [file, setFile] = useState(null);
-  // mock loading state
-  const [isLoading, setLoading] = useState(false);
-  const [isSuccess, setSuccess] = useState(false);
+  const { mutateAsync, isLoading, isSuccess, isError, error } = useUploadAlumniCsv();
   const handleSelectedFile = (e) => {
     setFile(e.target.files[0]);
   }
 
-  const handleUpload = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-    }, 1500)
+  const handleUpload = async () => {
+    try {
+      await mutateAsync({ file: file});
+    } catch (e) {
+
+    }
   }
 
   return (
@@ -42,7 +42,7 @@ export default function Upload() {
             </label>
         </div>
       )}
-      {file && !isLoading && !isSuccess && (
+      {file && !isLoading && !isSuccess && !isError && (
         <div>
           <div className={'flex'}>
             <h1>Bạn đã chọn file: </h1>
@@ -64,6 +64,12 @@ export default function Upload() {
         <div>
           <img src={SuccessIcon} alt={''} className={'w-56 mx-auto'}/>
           <h1 className={'mb-4 text-center font-bold text-2xl text-green-600'}>Thành công !</h1>
+        </div>
+      )}
+      {file && !isLoading && isError && (
+        <div>
+          <img src={ErrorIcon} alt={''} className={'w-56 mx-auto mb-3'}/>
+          <h1 className={'mb-4 text-center font-bold text-2xl text-red-600'}>Tải lên thất bại!</h1>
         </div>
       )}
     </div>

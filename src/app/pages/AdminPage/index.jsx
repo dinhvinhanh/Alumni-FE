@@ -113,7 +113,7 @@ export default function AdminPage() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} style={{ background: 'blue' }}>
         <Toolbar style={{ background: '#3d3d3d'}}>
@@ -218,7 +218,7 @@ export default function AdminPage() {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <div component="main" style={{ width: '80%', flexGrow: 1, padding: 30 }}>
         <DrawerHeader />
         <Switch>
           <Route path={'/admin/bai-viet'} component={PostControl} />
@@ -226,7 +226,7 @@ export default function AdminPage() {
           <Route path={'/admin/thong-ke'} component={StatisticControl} />
           <Route path={['/admin', '/admin/cuu-sinh-vien']} component={AlumniControl} />
         </Switch>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

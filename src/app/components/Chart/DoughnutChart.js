@@ -5,12 +5,11 @@ import './index.scss'
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function DoughnutChart(props) {
-  const overview = []
-  const values = [35, 15, 50]
-  const labels = ['Chưa có việc làm', 'Đã có việc làm', 'Chưa tham gia khảo sát']
+export default function DoughnutChart({ data }) {
+  const values = Object.values(data);
+  const labels = Object.keys(data)
   console.log('doughnut__chart');
-  const data = {
+  const result = {
     labels: labels,
     datasets: [
       {
@@ -40,7 +39,7 @@ export default function DoughnutChart(props) {
     <>
       {/* <h1>Overview ~ { values.reduce((acc, value) => acc + value, 0) } records </h1> */}
       <div className='w-96 mx-auto'>
-        <Doughnut data={data}  />
+        <Doughnut data={result}  />
       </div>
     </>
   )

@@ -20,7 +20,7 @@ export default function AlumniControl({ deviceType = 'desktop' }) {
     setOpen(false);
   }, []);
   return (
-    <div>
+    <div className={''}>
       <Helmet>
         <title>Quản lý cựu sinh viên</title>
       </Helmet>

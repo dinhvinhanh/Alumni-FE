@@ -1,9 +1,23 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { useRegister } from '../../../mutations/alumni';
 
 export default function RegisterPage() {
   const history = useHistory();
+  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
+  const mutation = useRegister();
 
+  const handleRegister = useCallback(async () => {
+    try {
+      await mutation.mutateAsync({ email, id });
+      setMessage('Chúng tôi đã gửi liên kết xác thực vào tài khoản của bạn. Vui lòng kiểm tra email và làm theo hướng dẫn.')
+    } catch (err) {
+      setMessage(err.response.data.message)
+    }
+  }, [email, id]);
 
   return (
     <div
@@ -31,11 +45,11 @@ export default function RegisterPage() {
           Đăng ký tài khoản
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800 text-center">
-          Vui lòng nhập thông tin của bạn, chúng tôi sẽ kiểm tra và tạo tài khoản cho bạn
+          {message ? <h1 className={'text-red-600 text-center'}>{message}</h1> :
+            'Vui lòng nhập thông tin của bạn, chúng tôi sẽ kiểm tra và tạo tài khoản cho bạn'}
         </div>
 
         <div className="mt-10">
-          <form action="#">
             <div className="flex flex-col mb-5">
               <label
                 htmlFor="email"
@@ -76,6 +90,7 @@ export default function RegisterPage() {
                     md:w-96
                   "
                   placeholder="Nhập vào email sinh viên nhà trường cấp"
+                  onChange={e => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -119,6 +134,7 @@ export default function RegisterPage() {
                     focus:outline-none focus:border-blue-400
                   "
                   placeholder="Nhập vào mã sinh viên của bạn"
+                  onChange={e => setId(e.target.value)}
                 />
               </div>
             </div>
@@ -126,7 +142,7 @@ export default function RegisterPage() {
             <div className="flex w-full">
               <button
                 type="submit"
-                onClick={() => history.push('/admin')}
+                onClick={handleRegister}
                 className="
                   flex
                   mt-2
@@ -163,7 +179,6 @@ export default function RegisterPage() {
                 </span>
               </button>
             </div>
-          </form>
         </div>
       </div>
       <div className="flex justify-center items-center mt-6">

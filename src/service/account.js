@@ -8,3 +8,11 @@ export const login = async (email, password) => {
   })
   return data.data;
 }
+
+export const register = async (id, email) => {
+  const data = await axios.post(config.apiEndpoint + '/api/accounts/register', {
+    email,
+    id
+  })
+  return data.data;
+}
