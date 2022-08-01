@@ -17,7 +17,9 @@ const RootLayout = () => {
       <Switch>
         <Route path="/about" component={withRouter(AboutPage)} />
         <Route path="/post" component={withRouter(PostDetailPage)} />
-        <Route path="/category" component={withRouter(CategoryPage)} exact />
+        <Route path="/su-kien" component={withRouter(CategoryPage)} exact />
+        <Route path="/tin-tuc" component={withRouter(CategoryPage)} exact />
+        <Route path="/guong-mat-cuu-sinh-vien" component={withRouter(CategoryPage)} exact />
         <Route path="/search" component={withRouter(CategoryPage)} exact />
         <Route path="/login" component={LoginPage} exact={true} />
         <Route path="/register" component={RegisterPage} exact={true} />

@@ -7,13 +7,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { CKEditor } from 'ckeditor4-react';
-import CustomInput from '../../components/CustomInput';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import { PostItem } from '../../components/PostItem';
+import { PostItem } from 'app/components/PostItem';
 import { Pagination } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
+import PostForm from '../../components/PostForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,21 +82,7 @@ export default function PostControl() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <div className={'mb-5'}>
-            <h1 className={'font-bold my-2'}>Tiêu đề bài viết</h1>
-            <CustomInput />
-          </div>
-          <div className={'mt-6'}>
-            <h1 className={'font-bold mb-2 mt-4'}>Nội dung bài viết</h1>
-            <CKEditor config={{
-              height: '500px',
-            }}/>
-          </div>
-          <div className={'flex justify-end mt-8'}>
-            <Button variant="contained" endIcon={<SendIcon />} className={'bg-blue-600'}>
-              Đăng bài
-            </Button>
-          </div>
+          <PostForm />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <PostItem data={{

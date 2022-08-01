@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import { login, register } from '../service/account';
-import { uploadAlumniCsv } from '../service/upload';
+import { uploadAlumniCsv, uploadFile } from '../service/upload';
 
 export const useLogin = () => useMutation(
   ({ email, password }) => login(email, password),
@@ -15,5 +15,10 @@ export const useRegister = () => useMutation(
 
 export const useUploadAlumniCsv = () => useMutation(
   ({ file }) => uploadAlumniCsv(file), {
+    onError: error => error,
+  });
+
+export const useUploadFile = () => useMutation(
+  ({ file }) => uploadFile(file), {
     onError: error => error,
   });

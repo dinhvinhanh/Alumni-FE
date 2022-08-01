@@ -54,8 +54,9 @@ export function HeaderWrapper() {
         <div className={'items-center hidden md:flex'}>
           <Link to={'/'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Trang chủ</Link>
           <Link to={'/about'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Giới thiệu</Link>
-          <Link to={'/category'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Tin tức - Sự kiện</Link>
-          <Link to={'/'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Gương mặt cựu sinh viên</Link>
+          <Link to={'/tin-tuc'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Tin tức</Link>
+          <Link to={'/su-kien'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Sự kiện</Link>
+          <Link to={'/guong-mat-cuu-sinh-vien'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Gương mặt cựu sinh viên</Link>
           <Link to={'/login'} className={'ml-6'}><Button variant="outlined">Đăng nhập</Button></Link>
         </div>
       </div>

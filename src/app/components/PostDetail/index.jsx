@@ -5,8 +5,9 @@ import { useGetPostDetail } from 'queries/alumni';
 import { CircularProgress } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 
-export function PostDetail() {
-  const { data, isSuccess } = useGetPostDetail('news', 1);
+export function PostDetail({ match }) {
+  const { data: response, isSuccess } = useGetPostDetail('news', match.params.slug);
+  const { data } = response || {};
   return (
     <div className={'px-3 md:px-0'}>
       {!isSuccess &&

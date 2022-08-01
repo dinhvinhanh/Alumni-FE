@@ -6,7 +6,12 @@ export const getAlumni = async (page, limit) => {
   return data.data;
 }
 
-export const statisticAlumniStatus = async (status = []) => {
-  const data = await axiosInstance.get(config.apiEndpoint + `/api/statistics/alumni?status=${status.join(',')}`)
+export const statisticAlumniStatus = async () => {
+  const data = await axiosInstance.get(config.apiEndpoint + '/api/statistics/alumni/status')
+  return data.data;
+}
+
+export const statisticAlumniSalaryRange = async () => {
+  const data = await axiosInstance.get(config.apiEndpoint + '/api/statistics/alumni/salary')
   return data.data;
 }

@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Box, Breadcrumbs } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { PostDetail } from 'app/components/PostDetail';
+import { Route, Switch } from 'react-router-dom';
 
 export function PostDetailPage() {
   return (
@@ -21,7 +22,9 @@ export function PostDetailPage() {
           </Breadcrumbs>
         </Grid>
         <Grid item xl={12} style={{ paddingTop: '20px' }} xs={12} sm={12}>
-          <PostDetail />
+          <Switch>
+            <Route path="/post/:slug" component={PostDetail} />
+          </Switch>
         </Grid>
       </Grid>
     </Box>

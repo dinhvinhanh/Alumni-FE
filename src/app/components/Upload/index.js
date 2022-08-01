@@ -5,10 +5,13 @@ import { LinearProgress } from '@mui/material';
 import SuccessIcon from './assets/success.png';
 import ErrorIcon from './assets/error.png';
 import { useUploadAlumniCsv } from 'mutations/alumni';
+import { useHistory } from 'react-router-dom';
 
 export default function Upload() {
   const [file, setFile] = useState(null);
   const { mutateAsync, isLoading, isSuccess, isError, error } = useUploadAlumniCsv();
+  const history = useHistory();
+
   const handleSelectedFile = (e) => {
     setFile(e.target.files[0]);
   }
@@ -16,6 +19,7 @@ export default function Upload() {
   const handleUpload = async () => {
     try {
       await mutateAsync({ file: file});
+      history.push('/admin/cuu-sinh-vien');
     } catch (e) {
 
     }

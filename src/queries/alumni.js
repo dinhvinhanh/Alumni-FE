@@ -1,23 +1,30 @@
 import { useQuery } from 'react-query';
 import { getPostDetail, getPosts } from 'service/posts';
-import { getAlumni, statisticAlumniStatus } from '../service/alumni';
+import { getAlumni, statisticAlumniSalaryRange, statisticAlumniStatus } from '../service/alumni';
 
-export const useGetPosts = (type, page, limit, textSearch = undefined) => useQuery(
-    'useGetPosts',
-    () => getPosts(type, page, limit)
+export const useGetPosts = (categorySlug, page, limit) => useQuery(
+    ['useGetPosts', categorySlug, page, limit],
+    () => {
+      return getPosts(categorySlug, page, limit);
+    }
   );
 
 export const useGetPostDetail = (categoryId, postId) => useQuery(
-  'useGetPostDetail',
+  ['useGetPostDetail', categoryId, postId],
   () => getPostDetail(categoryId, postId)
 );
 
 export const useGetAlumni = (page, limit) => useQuery(
-  'useGetAlumni',
+  ['useGetAlumni', page, limit],
   () => getAlumni(page, limit)
 );
 
-export const useStatisticAlumniStatus = (status = []) => useQuery(
-  'statisticAlumniStatus',
-  () => statisticAlumniStatus(status)
+export const useStatisticAlumniStatus = () => useQuery(
+  ['statisticAlumniStatus'],
+  () => statisticAlumniStatus()
+);
+
+export const useStatisticAlumniSalaryRange = () => useQuery(
+  ['useStatisticAlumniSalaryRange'],
+  () => statisticAlumniSalaryRange()
 );

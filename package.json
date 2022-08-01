@@ -34,6 +34,7 @@
     "react-slideshow-image": "^4.0.1",
     "react-swipeable-views": "^0.14.0",
     "sass": "^1.54.0",
+    "vietnamese-slug": "^1.1.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

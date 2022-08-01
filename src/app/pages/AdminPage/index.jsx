@@ -24,6 +24,7 @@ import PostControl from 'app/containers/PostControl';
 import AccountControl from 'app/containers/AccountControl';
 import Logo from 'app/containers/HeaderWrapper/assets/logo.png';
 import StatisticControl from 'app/containers/StatisticControl';
+import SurveyControl from '../../containers/SurveyControl';
 
 const drawerWidth = 240;
 
@@ -224,6 +225,7 @@ export default function AdminPage() {
           <Route path={'/admin/bai-viet'} component={PostControl} />
           <Route path={'/admin/tai-khoan'} component={AccountControl} />
           <Route path={'/admin/thong-ke'} component={StatisticControl} />
+          <Route path={'/admin/khao-sat'} component={SurveyControl} />
           <Route path={['/admin', '/admin/cuu-sinh-vien']} component={AlumniControl} />
         </Switch>
       </div>

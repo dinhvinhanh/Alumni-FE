@@ -5,8 +5,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import useStyles from './styles';
+import { useMemo } from 'react';
 
-export default function AlumniCard({ title, description, thumbnail, time}) {
+export default function AlumniCard({ data}) {
+  const { title, content, thumbnail, updateAt} = data;
+  const description = useMemo(() => {
+    const div = document.createElement('div');
+    div.innerHTML = content;
+    return div.innerText;
+  }, [content])
   const classes = useStyles();
   return (
     <div className="" style={{
@@ -34,7 +41,7 @@ export default function AlumniCard({ title, description, thumbnail, time}) {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            {time}
+            {updateAt}
           </Button>
         </CardActions>
       </Card>

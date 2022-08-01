@@ -7,25 +7,47 @@ import CategoryLabel from '../../components/CategoryLabel';
 import { Helmet } from 'react-helmet-async';
 import { useHistory, useLocation } from 'react-router-dom';
 import useQuery from 'app/hooks/useQuery';
+import { getPosts, searchPost } from '../../../service/posts';
 
 export function CategoryPage() {
-  const { data } = useGetPosts('', 1, 5);
+  const [data, setData] = useState();
   const [type, setType] = useState('');
-  const history = useHistory();
   const location = useLocation();
-  let query = useQuery();
+  const history = useHistory();
+  const query = useQuery();
+  useEffect(() => {
+    if (location.pathname === '/search') {
+      searchPost(query.get('q'), 1, 25)
+        .then(response => setData(response))
+    } else {
+      getPosts(location.pathname.slice(1, location.pathname.length), 1, 25)
+        .then(response => setData(response))
+    }
+  }, [])
 
   useEffect(() => {
-    const label = location.pathname === '/category' ? 'Tin tức - Sự kiện' : 'Kết quả tìm kiếm';
-    setType(label);
+    switch (location.pathname) {
+      case '/search':
+        setType('Kết quả tìm kiếm cho từ: ' + query.get('q'));
+        break;
+      case '/tin-tuc':
+        setType('Tin tức');
+        break;
+      case '/su-kien':
+        setType('Sự kiện');
+      case '/guong-mat-cuu-sinh-vien':
+        setType('Gương mặt cựu sinh viên');
+        break;
+    }
+
   }, [location.pathname])
   return (
-    <div className="mx-auto w-full w-container mt-6 px-3 md:px-0">
+    <div className={'mx-auto w-full w-container mt-6 px-3 md:px-0'}>
       <Helmet>
         <title>{type}</title>
       </Helmet>
-      <CategoryLabel url={''} text={type}/>
-      {data && data.map(((value, index) =>
+      <CategoryLabel url={'#1'} text={type}/>
+      {data && data.content.map(((value, index) =>
         <PostItem
           key={index} title={value.title}
           data={value}

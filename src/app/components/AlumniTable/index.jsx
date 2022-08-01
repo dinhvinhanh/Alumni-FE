@@ -100,7 +100,7 @@ export default function AlumniTable({ onClick }) {
                       if (column.id === 'avatar') {
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            <Avatar src={''} className={'mx-auto'}/>
+                            <Avatar src={value} className={'mx-auto'}/>
                           </TableCell>
                         )
                       }
