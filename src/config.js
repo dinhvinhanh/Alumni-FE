@@ -1,3 +1,3 @@
 export default  {
-  apiEndpoint: 'https://alumni.nguyenhuuvu.com'
+  apiEndpoint: 'https://alumni-uet.nguyenhuuvu.com'
 }
