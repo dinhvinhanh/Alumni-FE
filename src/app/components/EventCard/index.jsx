@@ -4,6 +4,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
+import config from '../../../config';
 
 export function EventCard(props) {
   const classes = useStyles();
@@ -11,7 +12,7 @@ export function EventCard(props) {
   return (
     <div className={'mt-2 mb-4 border-slate-100 pb-4 select-none'}>
       <Link to={`/post/${slug}`}  className={classes.imageWrapper}>
-        <img src={thumbnail} alt='post' className={'select-none'} style={{
+        <img src={config.apiEndpoint + thumbnail} alt='post' className={'select-none'} style={{
           height: '350px'
         }}/>
       </Link>

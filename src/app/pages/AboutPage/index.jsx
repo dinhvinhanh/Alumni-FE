@@ -28,7 +28,7 @@ export function AboutPage() {
         <Grid item xl={12} style={{ paddingTop: '20px' }}>
           <IntroCard
             description={'Nắm bắt cơ hội giúp phát triển nghề nghiệp, tăng cường mối quan hệ, góp phần vào lợi ích chung của cộng đồng cựu sinh viên. Duy trì kết nối và tương tác mọi lúc, mọi nơi trên mọi thiết bị.'}
-            image={'https://i2.connections.vn/cdn.inevn.com/img/thumb/19220.1kx.isij?w=893&quality=100&strip=all'}
+            image={'https://sotaytuyensinh.vn//uploads/diem-chuan-dh-cong-nghe%20ha%20noi-min.jpg'}
             label={'GIỚI THIỆU MẠNG LƯỚI CỰU SINH VIÊN'}
             title={'GIỚI THIỆU MẠNG LƯỚI CỰU SINH VIÊN'}
             url={'/'}

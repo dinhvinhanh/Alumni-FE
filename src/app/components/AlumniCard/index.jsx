@@ -6,13 +6,14 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import useStyles from './styles';
 import { useMemo } from 'react';
+import config from '../../../config';
 
 export default function AlumniCard({ data}) {
   const { title, content, thumbnail, updateAt} = data;
   const description = useMemo(() => {
     const div = document.createElement('div');
     div.innerHTML = content;
-    return div.innerText;
+    return div.innerText.substring(0, 200);
   }, [content])
   const classes = useStyles();
   return (
@@ -24,7 +25,7 @@ export default function AlumniCard({ data}) {
           <CardMedia
             component="img"
             height="100"
-            image={thumbnail}
+            image={config.apiEndpoint + thumbnail}
             alt="green iguana"
             classes={{
               img: classes.imageCard,
