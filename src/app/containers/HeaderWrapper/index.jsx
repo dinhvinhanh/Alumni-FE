@@ -4,9 +4,13 @@ import SearchBox from '../../components/SearchBox';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './assets/logo.png';
+import { useGetMyProfile } from 'queries/alumni';
+import Avatar from '@mui/material/Avatar';
+import config from '../../../config';
 
 export function HeaderWrapper() {
-
+  const { data: userInfo } = useGetMyProfile()
+console.log(userInfo)
   return (
     <div className={'py-6 px-3 md:px-0 '}>
       {/* app bar */}
@@ -57,7 +61,13 @@ export function HeaderWrapper() {
           <Link to={'/tin-tuc'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Tin tức</Link>
           <Link to={'/su-kien'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Sự kiện</Link>
           <Link to={'/guong-mat-cuu-sinh-vien'} className={'text-blue-700 cool-link cursor-pointer ml-6'}>Gương mặt cựu sinh viên</Link>
-          <Link to={'/login'} className={'ml-6'}><Button variant="outlined">Đăng nhập</Button></Link>
+          {userInfo ? (
+            <Link to={'/admin'} className={'ml-6'}>
+              <Avatar alt={userInfo.data.name} src={`${config.apiEndpoint}${userInfo.data.avatar}`} />
+            </Link>
+          ) : (
+            <Link to={'/login'} className={'ml-6'}><Button variant="outlined">Đăng nhập</Button></Link>
+          )}
         </div>
       </div>
 

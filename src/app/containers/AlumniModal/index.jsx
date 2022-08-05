@@ -21,7 +21,7 @@ const style = {
   p: 4,
 };
 
-export default function AlumniModal({ id, open, onClose, type}) {
+export default function AlumniModal({ id, open, onClose, type }) {
   return (
     <div>
       <Modal
@@ -44,11 +44,11 @@ export default function AlumniModal({ id, open, onClose, type}) {
             {(() => {
               switch (type) {
                 case MODAL_TYPE.ADD_ALUMNI:
-                  return <ProfileForm mode={'add'}/>
+                  return <ProfileForm mode={'addNew'}/>
                 case MODAL_TYPE.FILE_UPLOAD:
                   return <Upload />
                 default:
-                  return <ProfileForm mode={'add'}/>
+                  return <ProfileForm mode={'add'} selectedId={id}/>
               }
             })()}
           </Box>

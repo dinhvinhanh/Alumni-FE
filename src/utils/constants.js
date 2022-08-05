@@ -7,3 +7,7 @@ export const MODAL_TYPE = {
   ADD_ALUMNI: 'Thêm cựu sinh viên',
   VIEW_ALUMNI: 'Thông tin chi tiết',
 }
+
+export const SALARY_RANGE = {
+  '-1': ''
+}

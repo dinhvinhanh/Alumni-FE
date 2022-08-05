@@ -27,10 +27,10 @@ export function AboutPage() {
         </Grid>
         <Grid item xl={12} style={{ paddingTop: '20px' }}>
           <IntroCard
-            description={'Nắm bắt cơ hội giúp phát triển nghề nghiệp, tăng cường mối quan hệ, góp phần vào lợi ích chung của cộng đồng cựu sinh viên. Duy trì kết nối và tương tác mọi lúc, mọi nơi trên mọi thiết bị.'}
+            description={'Trường Đại học Công nghệ (ĐHCN) được thành lập ngày 25/5/2004 trên cơ sở phát triển khoa Công nghệ và Trung tâm Hợp tác Đào tạo và Bồi dưỡng Cơ học thuộc ĐHQGHN. Ngày 18/10/1999 (thành lập Khoa Công nghệ) được chọn là ngày Truyền thống của Trường ĐHCN. Trải qua chặng đường gần 20 năm xây dựng và phát triển, Nhà trường đã khẳng định vị thế là một trong những trường đào tạo, nghiên cứu về công nghệ, kỹ thuật hàng đầu cả nước và từng bước tiếp cận chuẩn mực quốc tế.'}
             image={'https://sotaytuyensinh.vn//uploads/diem-chuan-dh-cong-nghe%20ha%20noi-min.jpg'}
-            label={'GIỚI THIỆU MẠNG LƯỚI CỰU SINH VIÊN'}
-            title={'GIỚI THIỆU MẠNG LƯỚI CỰU SINH VIÊN'}
+            label={'LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN TRƯỜNG ĐẠI HỌC CÔNG NGHỆ'}
+            title={'LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN TRƯỜNG ĐẠI HỌC CÔNG NGHỆ'}
             url={'/'}
           />
         </Grid>

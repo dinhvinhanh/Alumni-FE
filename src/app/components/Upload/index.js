@@ -20,6 +20,7 @@ export default function Upload() {
     try {
       await mutateAsync({ file: file});
       history.push('/admin/cuu-sinh-vien');
+      window.location.reload();
     } catch (e) {
 
     }

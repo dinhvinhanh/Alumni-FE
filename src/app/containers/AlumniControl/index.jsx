@@ -11,14 +11,21 @@ import { Helmet } from 'react-helmet-async';
 
 export default function AlumniControl({ deviceType = 'desktop' }) {
   const [open, setOpen] = useState(false);
-  const [type, setType] = useState()
-  const handleShowModal = useCallback((type) =>() => {
+  const [type, setType] = useState();
+  const [selectedUser, setSelectedUser] = useState();
+
+  const handleShowModal = useCallback((type) => (id) => {
     setOpen(true);
-    setType(type)
-  }, []);
+    setType(type);
+    if (type === MODAL_TYPE.VIEW_ALUMNI) {
+      setSelectedUser(id);
+    }
+  }, [selectedUser]);
+
   const handleCloseModal = useCallback(() => {
     setOpen(false);
   }, []);
+
   return (
     <div className={''}>
       <Helmet>
@@ -41,7 +48,7 @@ export default function AlumniControl({ deviceType = 'desktop' }) {
         Upload file excel
       </Button>
       <AlumniTable onClick={handleShowModal(MODAL_TYPE.VIEW_ALUMNI)}/>
-      <AlumniModal open={open} onClose={handleCloseModal} type={type} />
+      <AlumniModal open={open} onClose={handleCloseModal} type={type} id={selectedUser}/>
     </div>
   );
 }

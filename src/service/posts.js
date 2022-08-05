@@ -29,3 +29,10 @@ export const createPost = async (params) => {
   const data = await axios.post( `${config.apiEndpoint}/api/articles`, {...params})
   return data.data;
 }
+
+export const getListPost = async (params) => {
+  const data = await axios.get( `${config.apiEndpoint}/api/articles`, {
+    params: {...params}
+  })
+  return data.data;
+}

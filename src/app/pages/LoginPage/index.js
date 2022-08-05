@@ -3,6 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import useQuery from 'app/hooks/useQuery';
 import { useLogin } from 'mutations/alumni';
 import { useCallback, useEffect, useState } from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import { CircularProgress } from '@mui/material';
+import * as React from 'react';
 
 export default function LoginPage() {
   const [message, setMessage] = useState('');
@@ -11,10 +14,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const mutation = useLogin();
   const query = useQuery();
-
   const handleLogin = useCallback(async () => {
     try {
       await mutation.mutateAsync({ email, password })
+      console.log('ok')
       history.push('/admin');
     } catch (err) {
       setMessage(err.response.data.message)
@@ -209,6 +212,12 @@ export default function LoginPage() {
           >
         </a>
       </div>
+      {mutation && <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={mutation.isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>}
     </div>
   )
 };

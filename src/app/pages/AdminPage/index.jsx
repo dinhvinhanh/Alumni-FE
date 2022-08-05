@@ -25,6 +25,7 @@ import AccountControl from 'app/containers/AccountControl';
 import Logo from 'app/containers/HeaderWrapper/assets/logo.png';
 import StatisticControl from 'app/containers/StatisticControl';
 import SurveyControl from '../../containers/SurveyControl';
+import PrivateRoute from '../../containers/PrivateRoute';
 
 const drawerWidth = 240;
 
@@ -157,34 +158,36 @@ export default function AdminPage() {
         <Divider />
         <List>
           {[
-            { title: 'Cựu sinh viên', link: 'cuu-sinh-vien' },
-            { title: 'Bài viết', link: 'bai-viet' },
-            { title: 'Tài khoản', link: 'tai-khoan' },
-            { title: 'Khảo sát', link: 'khao-sat' },
-            { title: 'Thống kê ', link: 'thong-ke' }
+            { title: 'Cựu sinh viên', link: 'cuu-sinh-vien', role: 'ROLE_ADMIN' },
+            { title: 'Bài viết', link: 'bai-viet', role: 'ROLE_USER' },
+            { title: 'Tài khoản', link: 'tai-khoan', role: 'ROLE_USER' },
+            { title: 'Khảo sát', link: 'khao-sat', role: 'ROLE_USER' },
+            { title: 'Thống kê ', link: 'thong-ke', role: 'ROLE_USER' }
           ].map((value, index) => (
-            <Link to={`/admin/${value.link}`} key={index}>
-              <ListItem  disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
+            <PrivateRoute key={index} role={value.role} unverifiedComponent={<></>}>
+              <Link to={`/admin/${value.link}`}>
+                <ListItem  disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
                     }}
                   >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={value.title} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={value.title} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            </PrivateRoute>
           ))}
         </List>
         <Divider />
@@ -192,9 +195,13 @@ export default function AdminPage() {
           {[
             { title: 'Thông báo', link: '/admin/thong-bao' },
             { title: 'Quay về trang chủ', link: '/' },
-            { title: 'Đăng xuất', link: '/' }
+            {
+              title: 'Đăng xuất',
+              link: '/login?message=Bạn đã đăng xuất',
+              onClick: () => localStorage.clear()
+            }
           ].map((value, index) => (
-            <Link to={`${value.link}`} key={index} >
+            <Link to={`${value.link}`} key={index} onClick={value.onClick || (() => {})}>
               <ListItem disablePadding sx={{ display: 'block' }}>
                 <ListItemButton
                   sx={{

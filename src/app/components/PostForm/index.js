@@ -1,6 +1,8 @@
 import CustomInput from '../CustomInput';
-import { FormControl, Select } from '@mui/material';
+import { CircularProgress, FormControl, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 import { CKEditor } from 'ckeditor4-react';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
@@ -10,11 +12,17 @@ import { useUploadFile } from 'mutations/alumni';
 import { useGetCategories } from 'queries/category';
 import slug from 'vietnamese-slug';
 import { useCreatePost } from '../../../mutations/post';
+import SuccessIcon from '../Upload/assets/success.png';
+import { MODAL_TYPE } from '../../../utils/constants';
+import Backdrop from '@mui/material/Backdrop';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import ResultModal from '../ResultModal';
 
 export default function PostForm(callback, deps) {
-  const { mutateAsync: uploadFile } = useUploadFile();
+  const uploadFile = useUploadFile();
+  const createPost = useCreatePost();
   const { data: categories } = useGetCategories();
-  const { mutateAsync: createPost } = useCreatePost();
   const [category, setCategory] = useState(categories && categories.data[0].id || 1);
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
@@ -30,22 +38,22 @@ export default function PostForm(callback, deps) {
   }, []);
   const handleSubmit = useCallback(async () => {
     const slugUrl = slug(title + new Date().getTime());
-    const data = await uploadFile({ file });
+    const data = await uploadFile.mutateAsync({ file });
     const thumbnail = data?.data?.url;
-    const result = await createPost({
+    const result = await createPost.mutateAsync({
       thumbnail,
       title,
       content,
       categoryId: category,
       slug: slugUrl,
     })
-  }, [file, title, content, category]);
+  }, [file, title, content, category, createPost, uploadFile]);
 
   useEffect(() => {
     if (file)
       setThumbnail(URL.createObjectURL(file));
   },  [file])
-
+  console.log(uploadFile, createPost)
   return (
     <>
       <div className={'mb-5'}>
@@ -103,15 +111,32 @@ export default function PostForm(callback, deps) {
         />
       </div>
       <div className={'flex justify-end mt-8'}>
-        <Button
-          variant="contained"
-          endIcon={<SendIcon />}
-          className={'bg-blue-600'}
-          onClick={handleSubmit}
-        >
-          Đăng bài
-        </Button>
+        {uploadFile && createPost && (
+          uploadFile.isLoading || createPost.isLoading ? (
+            <LoadingButton
+              loading
+              loadingPosition="start"
+              startIcon={<SaveIcon />}
+              color={'success'}
+              variant="contained"
+            >
+              Đang lưu
+            </LoadingButton>
+          ) : (
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              className={'bg-blue-600'}
+              onClick={handleSubmit}
+              load
+            >
+              Đăng bài
+            </Button>
+          )
+        )}
       </div>
+      {createPost && (createPost.isSuccess) && <ResultModal type={'success'} reload={true}/>}
+      {uploadFile && createPost && (createPost.isError || uploadFile.isError) && <ResultModal type={'error'} />}
     </>
   )
 }

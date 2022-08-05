@@ -1,30 +1,48 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
-import { useCallback, useState } from 'react';
-import { useRegister } from '../../../mutations/alumni';
+import { useCallback, useMemo, useState } from 'react';
+import { useActiveAccount, useRegister } from '../../../mutations/alumni';
+import useQuery from '../../hooks/useQuery';
+import Backdrop from '@mui/material/Backdrop';
+import { CircularProgress } from '@mui/material';
 
 export default function RegisterPage() {
   const history = useHistory();
+  const query = useQuery();
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [id, setId] = useState('');
-  const mutation = useRegister();
+  const mutationRegister = useRegister();
+  const mutationActiveAccount = useActiveAccount();
+  const token = useMemo(() => query.get('token'), []);
 
   const handleRegister = useCallback(async () => {
     try {
-      await mutation.mutateAsync({ email, id });
+      await mutationRegister.mutateAsync({ email, id });
       setMessage('Chúng tôi đã gửi liên kết xác thực vào tài khoản của bạn. Vui lòng kiểm tra email và làm theo hướng dẫn.')
     } catch (err) {
       setMessage(err.response.data.message)
     }
   }, [email, id]);
 
+  const handleActiveAccount = useCallback(async () => {
+    try {
+      await mutationActiveAccount.mutateAsync({ token, password: email });
+      history.push('/login?message=' + 'Xác thực thành công, tài khoản của bạn đã được kích hoạt!');
+    } catch (err) {
+      setMessage(err.response.data.message)
+    }
+  }, [email]);
+
+
   return (
     <div
       className="flex flex-col items-center justify-center"
     >
       <Helmet>
-        <title>Đăng ký tài khoản</title>
+        <title>
+          {token ? 'Hoàn tất đăng ký tài khoản' : 'Đăng ký tài khoản'}
+        </title>
       </Helmet>
       <div
         className="
@@ -42,11 +60,12 @@ export default function RegisterPage() {
         "
       >
         <div className="font-medium self-center text-xl sm:text-3xl text-gray-800">
-          Đăng ký tài khoản
+          {token ? 'Hoàn tất đăng ký tài khoản' : 'Đăng ký tài khoản'}
         </div>
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800 text-center">
           {message ? <h1 className={'text-red-600 text-center'}>{message}</h1> :
             'Vui lòng nhập thông tin của bạn, chúng tôi sẽ kiểm tra và tạo tài khoản cho bạn'}
+
         </div>
 
         <div className="mt-10">
@@ -54,7 +73,9 @@ export default function RegisterPage() {
               <label
                 htmlFor="email"
                 className="mb-1 text-xs tracking-wide text-gray-600"
-              >Email</label
+              >
+                {token ? 'Mật khẩu' : 'Email'}
+              </label
               >
               <div className="relative">
                 <div
@@ -73,7 +94,7 @@ export default function RegisterPage() {
                   <i className="fas fa-at text-blue-500"></i>
                 </div>
 
-                <input
+                {token ? <input
                   id="email"
                   type="email"
                   name="email"
@@ -89,16 +110,35 @@ export default function RegisterPage() {
                     focus:outline-none focus:border-blue-400
                     md:w-96
                   "
+                  placeholder="Nhập mật khẩu"
+                  onChange={e => setEmail(e.target.value)}
+                /> : <input
+                  id="email"
+                  name="email"
+                  className="
+                    text-sm
+                    placeholder-gray-500
+                    pl-10
+                    pr-4
+                    rounded-2xl
+                    border border-gray-400
+                    w-full
+                    py-2
+                    focus:outline-none focus:border-blue-400
+                    md:w-96
+                  "
                   placeholder="Nhập vào email sinh viên nhà trường cấp"
                   onChange={e => setEmail(e.target.value)}
-                />
+                />}
               </div>
             </div>
             <div className="flex flex-col mb-6">
               <label
                 htmlFor="password"
                 className="mb-1 text-xs sm:text-sm tracking-wide text-gray-600"
-              >Mã sinh viên</label
+              >
+                {token ? 'Nhập lại mật khẩu' : 'Mã sinh viên'}
+              </label
               >
               <div className="relative">
                 <div
@@ -119,7 +159,23 @@ export default function RegisterPage() {
                   </span>
                 </div>
 
-                <input
+                {token ? <input
+                  id="password"
+                  name="ma_sv"
+                  className="
+                    text-sm
+                    placeholder-gray-500
+                    pl-10
+                    pr-4
+                    rounded-2xl
+                    border border-gray-400
+                    w-full
+                    py-2
+                    focus:outline-none focus:border-blue-400
+                  "
+                  placeholder="Nhập lại mật khẩu"
+                  onChange={e => setId(e.target.value)}
+                /> : <input
                   id="password"
                   name="ma_sv"
                   className="
@@ -135,14 +191,14 @@ export default function RegisterPage() {
                   "
                   placeholder="Nhập vào mã sinh viên của bạn"
                   onChange={e => setId(e.target.value)}
-                />
+                />}
               </div>
             </div>
 
             <div className="flex w-full">
               <button
                 type="submit"
-                onClick={handleRegister}
+                onClick={token ? handleActiveAccount : handleRegister}
                 className="
                   flex
                   mt-2
@@ -161,7 +217,9 @@ export default function RegisterPage() {
                   ease-in
                 "
               >
-                <span className="mr-2 uppercase">Tiếp tục</span>
+                <span className="mr-2 uppercase">
+                  {token ? 'Hoàn tất' : 'Tiếp tục'}
+                </span>
                 <span>
                   <svg
                     className="h-6 w-6"
@@ -203,6 +261,12 @@ export default function RegisterPage() {
           >
         </a>
       </div>
+      {mutationRegister && mutationActiveAccount && <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={mutationRegister.isLoading || mutationActiveAccount.isLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>}
     </div>
   )
 };
