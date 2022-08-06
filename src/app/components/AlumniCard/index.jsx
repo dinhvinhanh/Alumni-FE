@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import useStyles from './styles';
 import { useMemo } from 'react';
-import config from '../../../config';
+import config from 'config';
 
 export default function AlumniCard({ data}) {
   const { title, content, thumbnail, updateAt} = data;

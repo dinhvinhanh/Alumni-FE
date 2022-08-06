@@ -20,7 +20,7 @@ export default function Upload() {
     try {
       await mutateAsync({ file: file});
       history.push('/admin/cuu-sinh-vien');
-      window.location.reload();
+      setTimeout(() => window.location.reload(), 1000)
     } catch (e) {
 
     }

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import SearchBox from '../../components/SearchBox';
+import SearchBox from 'app/components/SearchBox';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from './assets/logo.png';
 import { useGetMyProfile } from 'queries/alumni';
 import Avatar from '@mui/material/Avatar';
-import config from '../../../config';
+import config from 'config';
 
 export function HeaderWrapper() {
   const { data: userInfo } = useGetMyProfile()

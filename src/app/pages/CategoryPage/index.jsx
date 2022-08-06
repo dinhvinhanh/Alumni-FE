@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { PostItem } from '../../components/PostItem';
+import { PostItem } from 'app/components/PostItem';
 import { Pagination } from '@mui/material';
-import { useGetPosts } from '../../../queries/alumni';
-import CategoryLabel from '../../components/CategoryLabel';
+import { useGetPosts } from 'queries/alumni';
+import CategoryLabel from 'app/components/CategoryLabel';
 import { Helmet } from 'react-helmet-async';
 import { useHistory, useLocation } from 'react-router-dom';
 import useQuery from 'app/hooks/useQuery';
-import { getPosts, searchPost } from '../../../service/posts';
+import { getPosts, searchPost } from 'service/posts';
 
 export function CategoryPage() {
   const [data, setData] = useState();

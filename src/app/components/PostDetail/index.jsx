@@ -4,19 +4,22 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { useGetPostDetail } from 'queries/alumni';
 import { CircularProgress } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
+import { useEffect, useState } from 'react';
 
 export function PostDetail({ match }) {
-  const { data: response, isSuccess } = useGetPostDetail('news', match.params.slug);
+  const { data: response, isSuccess, isError, isLoading } = useGetPostDetail('news', match.params.slug);
   const { data } = response || {};
+
   return (
     <div className={'px-3 md:px-0'}>
-      {!isSuccess &&
-        (<Backdrop
+      {isLoading && (
+        <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={true}
         >
           <CircularProgress color="inherit" />
-        </Backdrop>)}
+        </Backdrop>
+      )}
       <div className={'md:flex mt-2 mb-4 border-b-2 border-slate-100 pb-4 justify-between'}>
         <h1 className={'font-bold text-xl uppercase'}>
           {data && data.title}
@@ -31,6 +34,7 @@ export function PostDetail({ match }) {
         </div>
       </div>
       <div className={'mx-auto'} style={{ width: '80%'}} dangerouslySetInnerHTML={{ __html: data && data.content}}></div>
+      {isError && <h1>Bài viết không tồn tại hoặc chưa được duyệt</h1>}
     </div>
   );
 };

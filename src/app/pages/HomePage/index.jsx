@@ -3,7 +3,7 @@ import 'react-slideshow-image/dist/styles.css'
 import { News } from 'app/containers/News';
 import { Event } from 'app/containers/Event';
 import AlumniFace from 'app/containers/AlumniFace';
-import Benefit from '../../components/Benefit';
+import Benefit from 'app/components/Benefit';
 import IntroPage from '../../containers/IntroPage';
 import { Helmet } from 'react-helmet-async';
 export function HomePage() {

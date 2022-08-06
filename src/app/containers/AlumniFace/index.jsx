@@ -2,10 +2,10 @@ import * as React from 'react';
 import Carousel from 'react-multi-carousel';
 import CategoryLabel from 'app/components/CategoryLabel';
 import 'react-multi-carousel/lib/styles.css';
-import AlumniCard from '../../components/AlumniCard';
-import { useGetPosts } from '../../../queries/alumni';
+import AlumniCard from 'app/components/AlumniCard';
+import { useGetPosts } from 'queries/alumni';
 import { useEffect, useState } from 'react';
-import { getPosts } from '../../../service/posts';
+import { getPosts } from 'service/posts';
 
 const responsive = {
   desktop: {

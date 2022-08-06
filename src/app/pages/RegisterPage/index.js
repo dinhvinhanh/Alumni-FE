@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link, useHistory } from 'react-router-dom';
 import { useCallback, useMemo, useState } from 'react';
-import { useActiveAccount, useRegister } from '../../../mutations/alumni';
+import { useActiveAccount, useRegister } from 'mutations/alumni';
 import useQuery from '../../hooks/useQuery';
 import Backdrop from '@mui/material/Backdrop';
 import { CircularProgress } from '@mui/material';

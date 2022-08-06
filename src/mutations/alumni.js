@@ -1,6 +1,6 @@
 import { useMutation } from 'react-query';
 import jwt_decode from 'jwt-decode';
-import { activeAccount, login, register } from '../service/account';
+import { activeAccount, changePassword, login, register } from '../service/account';
 import { uploadAlumniCsv, uploadFile } from '../service/upload';
 import { saveSurvey } from '../service/survey';
 import { createAlumni, deleteAlumni, updateAlumni } from '../service/alumni';
@@ -50,4 +50,9 @@ export const useUpdateAlumni = () => useMutation(
 export const useCreateAlumni = () => useMutation(
   (body) => createAlumni(body), {
     onError: error => error,
+  });
+
+export const useChangePassword = () => useMutation(changePassword, {
+    onError: error => error,
+  onSuccess: () => {}
   });

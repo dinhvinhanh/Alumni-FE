@@ -13,7 +13,7 @@ import dateFormat from 'dateformat';
 import Avatar from '@mui/material/Avatar';
 import { useGetAlumni, useSearchUser } from 'queries/alumni';
 import { TextField } from '@mui/material';
-import config from '../../../config';
+import config from 'config';
 
 const columns = [
   { id: 'avatar', label: 'Avatar', minWidth: 50, align: 'center' },
@@ -24,7 +24,12 @@ const columns = [
     id: 'email',
     label: 'Email',
     minWidth: 120,
-    format: (value) => value.toLocaleString('en-US'),
+    format: (value) => {
+      try {
+        return value.toLocaleString('en-US')
+      } catch {}
+      return value;
+    },
   },
   {
     id: 'dateOfBirth',
@@ -48,6 +53,12 @@ const columns = [
   {
     id: 'status',
     label: 'Trạng thái công việc',
+    minWidth: 170,
+    align: 'center',
+  },
+  {
+    id: 'workplace',
+    label: 'Công ty',
     minWidth: 170,
     align: 'center',
   },

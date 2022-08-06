@@ -5,7 +5,7 @@ import useStyles from './styles';
 import { useGetPosts } from 'queries/alumni';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getPosts } from '../../../service/posts';
+import { getPosts } from 'service/posts';
 
 export function News({ className = '' }) {
   const classes = useStyles();

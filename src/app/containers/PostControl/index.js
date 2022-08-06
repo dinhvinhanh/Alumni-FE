@@ -10,8 +10,8 @@ import Box from '@mui/material/Box';
 import { PostItem } from 'app/components/PostItem';
 import { Pagination } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
-import PostForm from '../../components/PostForm';
-import { useGetListPost } from '../../../queries/alumni';
+import PostForm from 'app/components/PostForm';
+import { useGetListPost } from 'queries/alumni';
 import dateFormat from 'dateformat';
 
 function TabPanel(props) {
@@ -50,7 +50,7 @@ function a11yProps(index) {
 export default function PostControl() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const { data: posts, isSuccess } = useGetListPost('PENDING,APPROVED,HIDDEN', 1, 25);
+  const { data: posts, isSuccess, refetch } = useGetListPost('PENDING,APPROVED,HIDDEN', 1, 25);
   console.log(posts)
 
   const handleChange = (event, newValue) => {
@@ -91,7 +91,7 @@ export default function PostControl() {
         <TabPanel value={value} index={1} dir={theme.direction}>
           {isSuccess && (
             posts.content.map((value, index) => {
-              return <PostItem data={{ ...value }} key={index} />
+              return <PostItem data={{ ...value }} controlMode={true} refetch={refetch}  key={index}/>
             })
           )}
           <div className={'flex justify-end mb-2 mt-9'}>

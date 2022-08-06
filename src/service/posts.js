@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from 'config';
+import axiosInstance from '../utils/api/apiCall';
 
 export const getPosts = async (
   categorySlug,
@@ -26,13 +27,23 @@ export const getPostDetail = async (categoryId, postId) => {
 }
 
 export const createPost = async (params) => {
-  const data = await axios.post( `${config.apiEndpoint}/api/articles`, {...params})
+  const data = await axiosInstance.post( `${config.apiEndpoint}/api/articles`, {...params})
   return data.data;
 }
 
 export const getListPost = async (params) => {
-  const data = await axios.get( `${config.apiEndpoint}/api/articles`, {
+  const data = await axiosInstance.get( `${config.apiEndpoint}/api/articles`, {
     params: {...params}
   })
+  return data.data;
+}
+
+export const deletePost = async (id) => {
+  const data = await axios.delete( `${config.apiEndpoint}/api/articles/${id}`)
+  return data.data;
+}
+
+export const browsePost = async (id) => {
+  const data = await axios.patch( `${config.apiEndpoint}/api/articles/${id}`)
   return data.data;
 }

@@ -6,8 +6,8 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { MODAL_TYPE } from 'utils/constants';
-import Upload from '../../components/Upload';
-import ProfileForm from '../../components/ProfileForm';
+import Upload from 'app/components/Upload';
+import ProfileForm from 'app/components/ProfileForm';
 
 const style = {
   position: 'absolute',

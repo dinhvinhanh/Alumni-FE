@@ -1,4 +1,4 @@
-import ProfileForm from '../../components/ProfileForm';
+import ProfileForm from 'app/components/ProfileForm';
 import { Helmet } from 'react-helmet-async';
 import * as React from 'react';
 

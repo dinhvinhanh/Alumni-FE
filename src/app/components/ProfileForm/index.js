@@ -1,12 +1,18 @@
 import CustomInput from '../CustomInput';
-import { useGetMyProfile, useGetProfile } from '../../../queries/alumni';
+import { useGetMyProfile, useGetProfile } from 'queries/alumni';
 import { useEffect, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import dateFormat from 'dateformat';
 import DraggableDialog from '../DraggableDialog';
-import { useCreateAlumni, useDeleteAlumni, useUpdateAlumni, useUploadFile } from '../../../mutations/alumni';
+import {
+  useChangePassword,
+  useCreateAlumni,
+  useDeleteAlumni,
+  useUpdateAlumni,
+  useUploadFile
+} from 'mutations/alumni';
 import { Formik } from 'formik';
-import config from '../../../config';
+import config from 'config';
 
 function formatDate(date) {
   try {
@@ -23,10 +29,12 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
   const [image, setImage] = useState();
   const [file, setFile] = useState();
   const [openConfirm, setOpenConfirm] = useState(false);
+  const [changePasswordMessage, setChangePasswordMessage]= useState('');
   const deleteAlumni = useDeleteAlumni();
   const uploadFile = useUploadFile();
   const updateAlumni = useUpdateAlumni();
   const createAlumni = useCreateAlumni();
+  const changePassword = useChangePassword();
 
   const handleSelectedImage = (e) => {
     setFile(e.target.files[0]);
@@ -50,8 +58,6 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
     }
   }, [selectedUser, selectedId])
 
-  console.log(profile)
-
   return (
     <>
       {(Object.keys(profile).length > 0 || mode === 'addNew') && (
@@ -64,6 +70,7 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
             avatar: profile.avatar,
             email: profile.email,
             gender: profile.gender,
+            job: profile.job,
             dateOfBirth: formatDate(profile.dateOfBirth),
           }}
           onSubmit={async (values, { setSubmitting }) => {
@@ -118,19 +125,12 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
                               <CustomInput name={'name'} className={'mt-3'} value={values.name} onChange={handleChange}/>
                             </div>
                           </div>
-                          <div className="col-span-6 sm:col-span-4 mt-6">
-                            <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                              Địa chỉ Email
-                            </label>
-                            <CustomInput name={'email'} className={'mt-3'} value={values.email} onChange={handleChange}/>
-                          </div>
-
-                          <div className="col-span-6 flex justify-between mt-6">
+                          <div className="col-span-6 sm:col-span-4 mt-6 flex justify-between">
                             <div className={'col-span-2 w-96'}>
-                              <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                                Ngày sinh
+                              <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                                Địa chỉ Email
                               </label>
-                              <CustomInput name={'dateOfBirth'} onChange={handleChange} className={'mt-3'} value={values.dateOfBirth}/>
+                              <CustomInput name={'email'} className={'mt-3'} value={values.email} onChange={handleChange}/>
                             </div>
                             <div className={'col-span-4 w-72'}>
                               <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
@@ -141,7 +141,23 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
                           </div>
 
                           <div className="col-span-6 flex justify-between mt-6">
-                            <div className={'col-span-2 w-96'}>
+                            <div className={'col-span-2 w-72'}>
+                              <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
+                                Ngày sinh
+                              </label>
+                              <CustomInput name={'dateOfBirth'} onChange={handleChange} className={'mt-3'} value={values.dateOfBirth}/>
+                            </div>
+
+                            <div className={'col-span-4 w-96'}>
+                              <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                                Công việc hiện tại
+                              </label>
+                              <CustomInput name={'job'} className={'mt-3'} value={values.job} onChange={handleChange}/>
+                            </div>
+                          </div>
+
+                          <div className="col-span-6 flex justify-between mt-6">
+                            <div className={'col-span-4 w-96'}>
                               <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
                                 Trạng thái công việc hiện tại
                               </label>
@@ -159,7 +175,7 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
                                 <option value={'Đã đi làm đúng ngành'}>Đã đi làm đúng chuyên ngành</option>
                               </select>
                             </div>
-                            <div className={'col-span-4 w-72'}>
+                            <div className={'col-span-2 w-72'}>
                               <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
                                 Khoảng lương
                               </label>
@@ -211,51 +227,103 @@ export default function ProfileForm({mode = 'edit', selectedId}) {
         </Formik>)}
 
 
-      {mode === 'edit' && (<div className="mt-10 sm:mt-10">
-        <div className="">
-          <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
-              <div className="shadow overflow-hidden sm:rounded-md">
-                <div className="px-4 py-5 bg-white sm:p-6">
-                  <div className="grid grid-cols-6 gap-6">
-                    <h1 className={'font-bold uppercase text-blue-800'}>Đổi mật khẩu</h1>
-                    <div className="col-span-6 sm:col-span-4">
-                      <div className="col-span-6">
-                        <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                          Mật khẩu cũ
-                        </label>
-                        <CustomInput className={'mt-3'} />
-                      </div>
+      {mode === 'edit' && (
+        <Formik initialValues={{
+          oldPassword: '',
+          newPassword: '',
+          reNewPassword: '',
+        }}
+        onSubmit={async (values, { resetForm }) => {
+          try {
+            await changePassword.mutateAsync(values);
+            setChangePasswordMessage('');
+            setChangePasswordMessage('Đổi mật khẩu thành công')
+            resetForm();
+          } catch(error) {
+            setChangePasswordMessage('Mật khẩu cũ không khớp')
+            console.log(changePassword)
+          }
+        }}
+        validate={(values) => {
+          const errors = {};
 
-                      <div className="col-span-6 sm:col-span-3 mt-6">
-                        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                          Mật khẩu mới
-                        </label>
-                        <CustomInput className={'mt-3'} />
-                      </div>
+          if (!values.oldPassword) {
+            errors.oldPassword = 'Không được để trống';
+          }
 
-                      <div className="col-span-6 sm:col-span-4 mt-6">
-                        <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                          Nhập lại mật khẩu
-                        </label>
-                        <CustomInput className={'mt-3'} />
+          if (!values.newPassword) {
+            errors.newPassword = 'Không được để trống';
+          }
+
+          if (!values.reNewPassword) {
+            errors.reNewPassword = 'Không được để trống';
+          }
+
+          if (values.newPassword !== values.reNewPassword) {
+            errors.reNewPassword = 'Không khớp với mật khẩu mới'
+          }
+          return errors;
+        }}
+        >
+          {
+            ({ handleSubmit, values, handleChange, errors }) => (
+              <div className="mt-10 sm:mt-10">
+                <div className="">
+                  <div className="mt-5 md:mt-0 md:col-span-2">
+                    <form onSubmit={handleSubmit}>
+                      <div className="shadow overflow-hidden sm:rounded-md">
+                        <div className="px-4 py-5 bg-white sm:p-6">
+                          <div className="grid grid-cols-6 gap-6">
+                            <h1 className={'font-bold uppercase text-blue-800'}>Đổi mật khẩu</h1>
+                            <div className="col-span-6 sm:col-span-4">
+                              {changePasswordMessage && (
+                                <div className={`col-span-6 font-bold mb-3 ${changePasswordMessage === 'Đổi mật khẩu cũ thành công' ? 'text-green-600' : 'text-red-600'}`}>
+                                  {changePasswordMessage}
+                                </div>
+                              )}
+                              <div className="col-span-6">
+                                <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
+                                  Mật khẩu cũ
+                                </label>
+                                {errors.oldPassword ? <div className="text-red-600 italic text-sm">* {errors.oldPassword}</div>: null}
+                                <CustomInput className={'mt-3'} name={'oldPassword'} value={values.oldPassword} onChange={handleChange}   />
+                              </div>
+
+                              <div className="col-span-6 sm:col-span-3 mt-6">
+                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                  Mật khẩu mới
+                                </label>
+                                {errors.newPassword ? <div className="text-red-600 italic text-sm">* {errors.newPassword}</div>: null}
+                                <CustomInput className={'mt-3'} name={'newPassword'} value={values.newPassword} onChange={handleChange} />
+                              </div>
+
+                              <div className="col-span-6 sm:col-span-4 mt-6">
+                                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                                  Nhập lại mật khẩu
+                                </label>
+                                {errors.reNewPassword ? <div className="text-red-600 italic text-sm">* {errors.reNewPassword}</div>: null}
+                                <CustomInput className={'mt-3'} name={'reNewPassword'} value={values.reNewPassword} onChange={handleChange} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                          <button
+                            type="submit"
+                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                          >
+                            Lưu lại
+                          </button>
+                        </div>
                       </div>
-                    </div>
+                    </form>
                   </div>
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Lưu lại
-                  </button>
-                </div>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>)}
+            )
+          }
+        </Formik>
+        )}
 
       <DraggableDialog
         open={openConfirm}

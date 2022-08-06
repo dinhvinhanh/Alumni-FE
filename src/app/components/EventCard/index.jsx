@@ -4,7 +4,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import EditLocationIcon from '@mui/icons-material/EditLocation';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
-import config from '../../../config';
+import config from 'config';
 
 export function EventCard(props) {
   const classes = useStyles();
