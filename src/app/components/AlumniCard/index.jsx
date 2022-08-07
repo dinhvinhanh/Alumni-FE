@@ -1,15 +1,16 @@
 import * as React from 'react';
+import { useMemo } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import useStyles from './styles';
-import { useMemo } from 'react';
 import config from 'config';
+import { Link } from 'react-router-dom';
 
 export default function AlumniCard({ data}) {
-  const { title, content, thumbnail, updateAt} = data;
+  const { title, content, thumbnail, updateAt, slug} = data;
   const description = useMemo(() => {
     const div = document.createElement('div');
     div.innerHTML = content;
@@ -32,9 +33,11 @@ export default function AlumniCard({ data}) {
             }}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
+            <Link to={'/post/' + slug}>
+              <Typography gutterBottom variant="h5" component="div">
+                {title}
+              </Typography>
+            </Link>
             <Typography variant="body2" color="text.secondary">
               {description}
             </Typography>

@@ -10,6 +10,7 @@ import config from 'config';
 import { useBrowsePost, useDeletePost } from 'mutations/post';
 import DraggableDialog from '../DraggableDialog';
 import { checkRole } from 'utils/auth';
+import dateFormat from 'dateformat';
 
 export function PostItem(props) {
   const { slug, updateAt, title, content, thumbnail, id, status } = props.data;
@@ -64,12 +65,12 @@ export function PostItem(props) {
   }
 
   return (
-    <Link to={`/post/${slug}`} className={'flex mt-2 mb-4 border-b-2 border-slate-100 pb-4 relative'} ref={ref}>
+    <Link target={controlMode && '_blank'} rel="noopener" to={`/post/${slug}`} className={'flex mt-2 mb-4 border-b-2 border-slate-100 pb-4 relative'} ref={ref}>
       <div className={classes.imageWrapper}>
         <img src={config.apiEndpoint + thumbnail} alt='post' className={'w-36 md:h-44 max-h-40 md:w-64'}/>
       </div>
       <div className={classes.postWrapper}>
-        <span className={`${classes.time} text-gray-300 ${responsive}`} >{updateAt}</span>
+        <span className={`${classes.time} text-gray-300 ${responsive}`} >{dateFormat(updateAt, 'MM:HH dd/mm/yyyy')}</span>
         <h2 className={'font-bold'}>{title}</h2>
         <p className={classes.threeLine}>{description}</p>
       </div>

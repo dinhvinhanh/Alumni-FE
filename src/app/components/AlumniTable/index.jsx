@@ -110,7 +110,7 @@ export default function AlumniTable({ onClick }) {
     console.log(event.target.value);
   }
 
-  const tableHeight = useMemo(() => window.innerHeight - 220, []) || 500;
+  const tableHeight = useMemo(() => window.innerHeight - 290, []) || 500;
 
   useEffect(() => {
     setData(dataAll);
@@ -179,7 +179,7 @@ export default function AlumniTable({ onClick }) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={data ? data.data.totalPages : 0}
+        count={data ? data.data.totalElements : 0}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
